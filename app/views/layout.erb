@@ -18,7 +18,11 @@
       <a href="/users/show">My Profile</a>
     </div>
   </div>
-
+  <% flash.keys.each do |type| %>
+    <div data-alert class="alert-box" role="alert">
+      <%= flash[type] %>
+    </div>
+  <% end %>
 
     <div class="content">
     <%= yield %>
