@@ -1,3 +1,5 @@
+require 'pry'
+
 class UsersController < ApplicationController
 
   get '/signup' do
@@ -9,24 +11,20 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if validate_username && validate_email == nil
-      if validate_signup
-        user = User.new(params)
-          if user.save
-            session[:user_id] = user.id
-            redirect '/login'
-          end
-      end
-    elsif validate_username != nil
-        if validate_email != nil
-          flash[:notice] = "Username already exists."
-          flash[:error] = "Email already exists."
+      user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+        if user.save
+          session[:user_id] = user.id
+          flash[:success] = "Account created successfully!"
+          binding.pry
+          redirect '/login'
         else
-          flash[:error] = "Username already exists."
+          flash[:username_error] = "Username #{user.errors.messages[:username][0]}"
+          flash[:email_error] = "Email #{user.errors.messages[:email][0]}"
+          binding.pry
+          redirect '/signup'
         end
+      #end
     end
-      redirect '/signup'
-  end
 
   get '/login' do
     if logged_in?

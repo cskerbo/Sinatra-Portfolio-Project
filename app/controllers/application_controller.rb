@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "secret"
+    set :session_secret, SecureRandom.hex(64)
     register Sinatra::Flash
   end
 
@@ -23,17 +23,5 @@ class ApplicationController < Sinatra::Base
      def current_user
        User.find(session[:user_id])
      end
-
-     def validate_signup
-       params[:username] != "" && params[:email] != "" && params[:password] != ""
-     end
-
-     def validate_username
-       User.find_by(:username => params[:username])
-     end
-
-     def validate_email
-       User.find_by(:email => params[:email])
-     end
-   end
+  end
 end

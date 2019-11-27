@@ -102,13 +102,27 @@ html, body {
     border-style: solid;
     border-width: 1px;
     display: block;
-    font-size: 0.72222rem;
-    font-weight: normal;
-    margin-bottom: 1.11111rem;
     padding: 0.77778rem 1.33333rem 0.77778rem 0.77778rem;
-    position: relative;
+    position: static;
     transition: opacity 300ms ease-out;
-    background-color: red;
+    background-color: #c71010;
     border-color: #0078a0;
     color: #FFFFFF;
+}
+
+/* The close button */
+.closebtn {
+
+  color: white;
+  font-weight: bold;
+
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
 }
