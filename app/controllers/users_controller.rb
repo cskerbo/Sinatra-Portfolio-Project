@@ -11,20 +11,19 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-      user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-        if user.save
-          session[:user_id] = user.id
-          flash[:success] = "Account created successfully!"
-          binding.pry
-          redirect '/login'
-        else
-          flash[:username_error] = "Username #{user.errors.messages[:username][0]}"
-          flash[:email_error] = "Email #{user.errors.messages[:email][0]}"
-          binding.pry
-          redirect '/signup'
-        end
-      #end
+    user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    if user.save
+      session[:user_id] = user.id
+      flash[:success] = "Account created successfully!"
+      binding.pry
+      redirect '/login'
+    else
+      flash[:notice] = "Username #{user.errors.messages[:username][0]}"
+      flash[:email_error] = "Test"
+      binding.pry
+      redirect '/signup'
     end
+  end
 
   get '/login' do
     if logged_in?
