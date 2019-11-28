@@ -15,11 +15,13 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       flash[:success] = "Account created successfully!"
-      binding.pry
       redirect '/login'
     else
-      flash[:notice] = "Username #{user.errors.messages[:username][0]}"
-      flash[:email_error] = "Test"
+      if user.errors.messages[:username]
+        flash[:username_error] = "Username #{user.errors.messages[:username][0]}"
+      elsif user.errors.messages[:email]
+        flash[:email_error] = "Email #{user.errors.messages[:email][0]}"
+      end
       binding.pry
       redirect '/signup'
     end

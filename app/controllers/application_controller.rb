@@ -7,7 +7,8 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, SecureRandom.hex(64)
+    #Using SecureRandom blocks storage of flash messages
+    set :session_secret, "secret"
     register Sinatra::Flash
   end
 
