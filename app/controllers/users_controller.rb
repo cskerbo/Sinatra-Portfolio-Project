@@ -19,10 +19,11 @@ class UsersController < ApplicationController
     else
       if user.errors.messages[:username]
         flash[:username_error] = "Username #{user.errors.messages[:username][0]}"
-      elsif user.errors.messages[:email]
+      end
+      if user.errors.messages[:email]
         flash[:email_error] = "Email #{user.errors.messages[:email][0]}"
       end
-      binding.pry
+
       redirect '/signup'
     end
   end
@@ -30,9 +31,23 @@ class UsersController < ApplicationController
   get '/login' do
     if logged_in?
        redirect to '/users/show'
-   else
+    else
      erb :'users/login'
-   end
+    end
+  end
+
+  post '/login' do
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/users/show"
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/users/show' do
+    erb :'users/show'
   end
 
   get "/logout" do

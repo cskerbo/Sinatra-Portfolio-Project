@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="/css/responsive.css">
   <title>DBD Character Builder</title>
 </head>
-<div class="wrapper">
+  <body>
   <div class="header">
     <a href="/" class="logo"><img src="/images/logo.jpg" style="width:75px; height:40px"></a>
     <div class="header-right">
@@ -19,20 +19,27 @@
     </div>
   </div>
 
-  <% flash.keys.each do |type| %>
+  <div class="wrapper">
+    <% flash.keys.each do |type| %>
     <div data-alert class="alert-box" role="alert">
       <%= flash[type] %>
       <a href="#" class="closebtn" onclick="this.parentElement.style.display='none';">&times;</a>
     </div>
-  <% end %>
-
+    <% end %>
     <div class="content">
     <%= yield %>
     </div>
+  </div>
 
   <div class="footer">
-      <h5>Content is available under <a class="external" rel="nofollow" href="//creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a> unless otherwise noted.<br>Game content and materials are trademarks and copyrights of their respective publisher and its licensors.  All rights reserved.<br>
-          This site is not affiliated with the game publisher.</h5>
+    <div class="footer-top">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">About</a>
+    </div>
+  <div class="footer-bottom">
+    <p>Content is available under <a class="external" target="blank" rel="nofollow" href="//creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a> unless otherwise noted.<br>Game content and materials are trademarks and copyrights of their respective publisher and its licensors.  All rights reserved.<br>
+        This site is not affiliated with the game publisher.</p>
   </div>
 </div>
 </body>
