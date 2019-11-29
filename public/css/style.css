@@ -17,12 +17,13 @@ html, body {
 
 .wrapper {
   flex: 1;
-  width: 100%;
+  max-width: 100%;
 
 }
 
 .content {
   height: 100%;
+  max-width: 100%;
   min-height: 20%;
   overflow: auto;
   display: flex;
@@ -166,7 +167,7 @@ html, body {
     justify-content: center;
     outline: none;
     font-size: 15px;
-    width: 100%;
+    width: 30%;
     display: flex;
     padding: 35px 20px 15px;
     background: rgba(255, 255, 255, 0);
@@ -174,6 +175,7 @@ html, body {
     transition: transform 0.2s;
     transition: transform 0.2s, -webkit-transform 0.2s;
     color: #fbfbfb;
+    margin: 0 auto;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -213,14 +215,14 @@ html, body {
     transition: all 150ms;
 }
 
-.signup-button {
+ .signup-button {
   -webkit-appearance: push-button;
   border-radius: 5px;
     height: 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 90px;
+    width: 100%;
     border: 0;
     background: none;
     color: #ffffff;
@@ -243,4 +245,18 @@ html, body {
 .other-links a {
   font-size: 14px;
   color: #cfd0d2;
+}
+
+.create-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.create-account {
+  height: 50%;
+  margin: 0;
 }
