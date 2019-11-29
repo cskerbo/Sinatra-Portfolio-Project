@@ -15,7 +15,7 @@ class Scraper
       bio = bio_page.css('div.mw-parser-output i').each do |line|
         text = line.text.strip
         if text.length > 300
-          survivor_info = {:name => name, :bio => text}
+          survivor_info = {:name => name, :bio => text, :type => "survivor"}
           survivors << survivor_info
         end
       end
@@ -38,7 +38,7 @@ end
       bio = bio_page.css('div.mw-parser-output i').each do |line|
         text = line.text.strip
         if text.length > 300
-          killer_info = {:name => name, :bio => text}
+          killer_info = {:name => name, :bio => text, :type => "killer"}
           killers << killer_info
         end
       end

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20191126070818) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "bio"
+    t.string "type"
     t.string "user_id"
   end
 

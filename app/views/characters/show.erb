@@ -1,9 +1,9 @@
-<div class="container">
-<h1 class="item">Placeholder: User specific characters and content </h1>
+<div class="container-characters">
+</div>
+<div class="container-characters">
 <% @characters.each do |c|%>
-<p><%= c.name %></p>
-<p><%= c.bio %></p>
+<div class="content-characters">
+<%= c.name %>
+</div>
 <%end%>
-<a class="item" href="/signup">Sign Up</a>
-<a class="item" href="/login">Log In</a>
 </div>

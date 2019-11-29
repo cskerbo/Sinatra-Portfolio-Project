@@ -45,6 +45,29 @@ html, body {
   color: white;
 }
 
+.container-characters {
+  flex: auto 0;
+  margin: 0;
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  color: white;
+}
+
+.content-characters {
+  flex: auto 0;
+  margin: 0;
+  width: 50%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 .item {
   align-self: center;
 
