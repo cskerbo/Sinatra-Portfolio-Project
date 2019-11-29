@@ -230,7 +230,7 @@ html, body {
     text-align: center;
     padding: 0 28px;
     background: grey;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 700;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     transition: all 150ms;
@@ -249,14 +249,35 @@ html, body {
 
 .create-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
   margin: 0;
   min-width: 100%;
   max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
 }
 
 .create-account {
-  height: 50%;
   margin: 0;
+  width: 50%;
+}
+
+.create-account#account-features {
+  margin-left: 10%;
+  width: 50%;
+  background: rgba(107, 107, 107, 0.3);
+}
+
+.create-account ul {
+  text-align: left;
+  list-style-position: inside;
+  float: right;
+  padding: 3px;
+}
+.create-account h2 {
+  text-align: left;
+  padding: 2%;
+  width: 60%;
 }
