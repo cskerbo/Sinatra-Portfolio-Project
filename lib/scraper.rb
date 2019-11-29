@@ -1,3 +1,5 @@
+require 'nokogiri'
+require 'open-uri'
 
 class Scraper
 
@@ -44,7 +46,7 @@ end
     killer_hash = killers.group_by {|h1| h1[:name]}.map do |k, v|
       {:name => k, :bio => v.map {|h2| h2[:bio] }.join}
     end
-    killer_hash
+    puts killer_hash
   end
 
   def self.scrape_perks
