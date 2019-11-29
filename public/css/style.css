@@ -167,15 +167,24 @@ html, body {
     justify-content: center;
     outline: none;
     font-size: 15px;
-    width: 30%;
+    width: 50%;
     display: flex;
     padding: 35px 20px 15px;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0.3);
     transition: -webkit-transform 0.2s;
     transition: transform 0.2s;
     transition: transform 0.2s, -webkit-transform 0.2s;
     color: #fbfbfb;
     margin: 0 auto;
+}
+
+input {
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 0;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0);
 }
 /* width */
 ::-webkit-scrollbar {
@@ -222,7 +231,7 @@ html, body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 50%;
     border: 0;
     background: none;
     color: #ffffff;
@@ -234,6 +243,9 @@ html, body {
     font-weight: 700;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     transition: all 150ms;
+}
+.signup-form {
+  text-align: center;
 }
 
 .other-links {
@@ -267,17 +279,22 @@ html, body {
 .create-account#account-features {
   margin-left: 10%;
   width: 50%;
-  background: rgba(107, 107, 107, 0.3);
+  height: 50%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .create-account ul {
   text-align: left;
   list-style-position: inside;
   float: right;
-  padding: 3px;
+  padding-right: 5%;
 }
 .create-account h2 {
   text-align: left;
   padding: 2%;
   width: 60%;
+}
+
+div#cf-home {
+  background: rgba(255, 255, 255, 0);
 }
