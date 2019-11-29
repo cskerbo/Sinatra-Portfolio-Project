@@ -56,6 +56,10 @@ html, body {
   color: white;
 }
 
+.container-characters h2 {
+  height: 10%;
+}
+
 .content-characters {
   flex: auto 0;
   margin: 0;
