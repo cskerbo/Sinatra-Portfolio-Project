@@ -9,4 +9,4 @@ ActiveRecord::Base.establish_connection(
 )
 
 require_all 'app'
-require_relative '../lib/scraper.rb'
+require_all 'lib'
