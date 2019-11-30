@@ -18,7 +18,7 @@ html, body {
 .wrapper {
   flex: 1;
   max-width: 100%;
-
+  height: 100%;
 }
 
 .content {
@@ -49,28 +49,13 @@ html, body {
   flex: auto 0;
   margin: 0;
   width: 50%;
-  height: auto;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  color: white;
-}
-
-.container-characters h2 {
-  height: 10%;
-}
-
-.content-characters {
-  flex: auto 0;
-  margin: 0;
-  width: 50%;
-  height: 10%;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: white;
 }
+
+
 
 .item {
   align-self: center;

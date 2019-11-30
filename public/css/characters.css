@@ -1,0 +1,101 @@
+.character-content {
+  display: flex;
+  flex-direction: column;
+
+}
+.fpbox {
+    border-radius: 5px;
+    border: 2px solid #1f1f1f;
+    box-shadow: 0 0 5px 0 #000000;
+    color: #aaa9a9;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+    background: #0b0b0b url(https://deadbydaylight.gamepedia.com/media/deadbydaylight.gamepedia.com/2/2f/Skin-Element-Left-Background.jpg) left
+}
+
+
+.fpbox .heading {
+    border-bottom: 1px solid #1f1f1f;
+    font-family: 'Roboto',sans-serif;
+    color: #ffffff;
+    font-variant: small-caps;
+    font-size: 132%;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+}
+
+.fplinks {
+    margin: -5px;
+}
+
+.fplink {
+    display: inline-block;
+    vertical-align: middle;
+    width: 25%;
+}
+
+#fptopsection .fplink.image, #fpflexsection .fplink.image, #fpbottomsection .fplink.image {
+    width: 110px;
+    height: 110px;
+}
+
+.fplink .box {
+    display: table;
+    width: 100%;
+    border-spacing: 5px;
+    border-collapse: separate;
+}
+
+.fplink .box .row {
+    display: table-row;
+}
+
+.fplink.image .box .row .cell {
+    width: 100px;
+    height: 100px;
+    vertical-align: bottom;
+    overflow: hidden;
+}
+
+.fplink .box .row .cell {
+    display: table-cell;
+    position: relative;
+    font-family: 'Roboto',sans-serif;
+    border-radius: 5px;
+    border: none;
+    background: #19263e;
+    box-shadow: 0 0 5px 0 #000000;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.fplink.image .image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 75%;
+    z-index: 1;
+}
+
+.fplink a {
+    display: block;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1px 5px;
+}
+
+.fplink.image .image a {
+    padding: 0;
+}
+
+.fplink.image a {
+    z-index: 2;
+}

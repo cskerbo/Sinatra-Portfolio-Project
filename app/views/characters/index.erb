@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="/css/characters.css">
+<div class="container-characters" id="cc-how">
+  <h2>How it works.</h2>
+  <ol>
+    <li>Select a character</li>
+    <li>Add perks to your character's loadout.</li>
+    <li>Save your build (create a free account to save your builds!)
+    <li>Share your build for others to rate</li>
+  </ol>
+</div>
+<div class="character-content">
+<div class="container-characters">
+  <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+  <div class="heading"><a href="/Survivors" title="Survivors">The Survivors</a>
+  </div>
+  <div class="fplinks">
+  <% @characters.each do |c|%>
+  <% if c.character_type == "survivor"%>
+  <div class="fplink plainlinks image">
+  <div class="box">
+  <div class="row">
+  <div class="cell">
+  <div class="image">
+  <a href="/Dwight_Fairfield" title="Dwight Fairfield"><img alt="DF charPreview portrait.png" src="image" width="190" height="210" /></a>
+  </div>
+  <div class="link">
+  <a href="/Dwight_Fairfield" title="Dwight Fairfield"><%= c.name %></a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <%end%>
+  <%end%>
+  </div>
+  </div>
+</div>
+<div class="container-characters">
+  <div class="fpbox" id="fpkillers" style="text-align: center;">
+  <div class="heading"><a href="/Killers" title="Killers">The Killers</a>
+  </div>
+  <div class="fplinks">
+  <% @characters.each do |c|%>
+  <% if c.character_type == "killer"%>
+  <div class="fplink plainlinks image">
+  <div class="box">
+  <div class="row">
+  <div class="cell">
+  <div class="image">
+  <a href="/Dwight_Fairfield" title="Dwight Fairfield"><img alt="DF charPreview portrait.png" src="image" width="190" height="210" /></a>
+  </div>
+  <div class="link">
+  <a href="/Dwight_Fairfield" title="Dwight Fairfield"><%= c.name %></a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <%end%>
+  <%end%>
+  </div>
+  </div>
+</div>
+</div>
