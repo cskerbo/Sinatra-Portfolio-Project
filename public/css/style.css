@@ -18,7 +18,7 @@ html, body {
 .wrapper {
   flex: 1;
   max-width: 100%;
-  height: 100%;
+
 }
 
 .content {
@@ -45,21 +45,8 @@ html, body {
   color: white;
 }
 
-.container-characters {
-  flex: auto 0;
-  margin: 0;
-  width: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  color: white;
-}
-
-
-
 .item {
   align-self: center;
-
 }
 
 /* Style the header with a grey background and some padding */

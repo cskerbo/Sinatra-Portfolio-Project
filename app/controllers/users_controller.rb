@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-  get '/signup' do
+    get '/signup' do
       if logged_in?
         redirect to '/users/show'
       else

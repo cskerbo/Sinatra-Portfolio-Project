@@ -1,12 +1,5 @@
 class CharacterController < ApplicationController
+ get '/characters' do
 
-  get '/characters' do
-    @characters = Character.all
-    erb :'characters/index'
-  end
-
-  get '/characters/:slug' do
-    erb :'characters/show'
-  end
-
+ end
 end
