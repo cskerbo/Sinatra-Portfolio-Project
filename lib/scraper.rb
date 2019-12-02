@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+
 class Scraper
 
   def self.scrape_survivors
@@ -11,9 +12,13 @@ class Scraper
     survivor_list.each do |survivor|
       name = survivor.css("a").attribute("title").text
       bio_link = survivor.css('a').attribute('href').value
-      src  = survivor_list.at('img')['src']
+      if survivor.css('img').attribute('src') != nil
 
-      File.open(src,'wb'){ |f| f.write(open(src).read) }
+      image_url  = survivor.css('img').attribute('src').value
+      File.open("#{name}.png", "wb") do |f|
+          f.write(open(image_url).read)
+        end
+      end
       bio_page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com#{bio_link}"))
       bio = bio_page.css('div.mw-parser-output i').each do |line|
         text = line.text.strip
@@ -23,12 +28,10 @@ class Scraper
         end
       end
     end
-    survivor_hash = survivors.group_by {|h1| h1[:name]}.map do |k, v|
-      {:name => k, :bio => v.map {|h2| h2[:bio] }.join}
-    end
     survivor_hash.each {|t| t[:character_type]="survivor"}
     survivor_hash
 end
+
 scrape_survivors
   def self.scrape_killers
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Dead_by_Daylight_Wiki"))
