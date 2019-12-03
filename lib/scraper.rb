@@ -64,22 +64,40 @@ end
   end
 
   def self.scrape_perks
-    page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
     all_perks = []
+    perk_name_page = Net::HTTP.get(URI.parse('https://dbd.onteh.net.au/api.php?perks'))
+    json = JSON.parse(perk_name_page)
+    json.each do |name|
+      perk_detail = Net::HTTP.get(URI.parse('https://dbd.onteh.net.au/api.php?perkinfo='"#{name}"))
+      json_detail = JSON.parse(perk_detail)
+      perk_name = json_detail.fetch("name")
+      perk_description = json_detail.fetch("lines")
+      perk_character = json_detail.fetch("character", nil)
+      perk_teachable = json_detail.fetch("teachable", nil)
+      if perk_character == nil || perk_teachable == nil
+        perk_complete = {:name => perk_name, :description => perk_description}
+        all_perks << perk_complete
+      else
+        perk_complete = {:name => perk_name, :description => perk_description, :character => perk_character, :teachable => perk_teachable}
+        all_perks << perk_complete
+      end
+    end
 
-    perk_extract = page.css('div.mw-parser-output')
+    binding.pry
+
+    perk_extract = page.css('body')
     counter = 1
     perk_extract.each do |item|
-      perk_name = item.css('table.wikitable.sortable tr th[2] a').attribute('title').text
-      image_url  = item.css('table.wikitable.sortable tr th[1] a[1] img').attribute('src').value
-
+      perk_name = item.css('table tbody td[2] p a').text
+      image_url  = item.css('table tbody td[0] p a').text
       description = []
-      item.css('table.wikitable.sortable tr td') do |d|
-        description << d.content
+      binding.pry
+      item.css('table.wikitable.sortable tr td p').each do |d|
+        description << d.text
       end
-        perk_complete = {:name => name, :description => description, :count => counter}
-        all_perks << perk_complete
-        counter += 1
+      perk_complete = {:name => perk_name, :description => description, :count => counter}
+      all_perks << perk_complete
+      counter += 1
     end
     all_perks
     binding.pry
