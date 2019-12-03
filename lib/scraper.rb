@@ -62,8 +62,6 @@ end
     killer_hash.each {|t| t[:character_type]="killer"}
     killer_hash
   end
-scrape_survivors
-scrape_killers
 
   def self.scrape_perks
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
@@ -84,6 +82,7 @@ scrape_killers
       end
     end
     all_perks
+    binding.pry
   end
-  scrape_killers
+  scrape_perks
 end

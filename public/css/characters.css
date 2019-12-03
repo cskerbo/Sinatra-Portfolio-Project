@@ -41,6 +41,10 @@
     padding: 0 0 5px 0;
 }
 
+.heading a {
+  color: white;
+}
+
 .fplinks {
     margin: -5px;
 }
@@ -84,9 +88,20 @@
     box-shadow: 0 0 5px 0 #000000;
     color: #ffffff;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;;
     text-align: center;
     vertical-align: middle;
+}
+
+.fplink.image .box .row .cell .image img {
+    width: 100px;
+    height: 100px;
+}
+
+.fplink.image .link a {
+    background: #19263e;
+    background: rgba(25,38,62,0.5);
+    font-size: 80%;
 }
 
 .fplink.image .image {
@@ -107,6 +122,7 @@
     bottom: 0;
     left: 0;
     padding: 1px 5px;
+    color: white;
 }
 
 .fplink.image .image a {
