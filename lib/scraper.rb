@@ -73,19 +73,16 @@ end
       perk_name = item.css('table.wikitable.sortable tr th[2] a').attribute('title').text
       image_url  = item.css('table.wikitable.sortable tr th[1] a[1] img').attribute('src').value
 
-      binding.pry
-
-      perk_description_extract = item.css('table.wikitable.sortable tbody tr td p')
-      perk_description = perk_description_extract.map {|description| description.text.gsub("\n", "")}
-      perk_hash = Hash[perk_name.zip(perk_description.map {|i| i.include?(',') ? (i.split /, /) : i})]
-      perk_list = perk_hash.each do |name, description|
+      description = []
+      item.css('table.wikitable.sortable tr td') do |d|
+        description << d.content
+      end
         perk_complete = {:name => name, :description => description, :count => counter}
         all_perks << perk_complete
         counter += 1
-      end
     end
     all_perks
-
+    binding.pry
   end
   scrape_perks
 end
