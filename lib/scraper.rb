@@ -33,7 +33,8 @@ class Scraper
       end
     survivor_hash.each {|t| t[:character_type]="survivor"}
     survivor_hash
-end
+  end
+
   def self.scrape_killers
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Dead_by_Daylight_Wiki"))
     killers = []
@@ -82,25 +83,26 @@ end
         all_perks << perk_complete
       end
     end
-
-    binding.pry
-
-    perk_extract = page.css('body')
-    counter = 1
-    perk_extract.each do |item|
-      perk_name = item.css('table tbody td[2] p a').text
-      image_url  = item.css('table tbody td[0] p a').text
-      description = []
-      binding.pry
-      item.css('table.wikitable.sortable tr td p').each do |d|
-        description << d.text
-      end
-      perk_complete = {:name => perk_name, :description => description, :count => counter}
-      all_perks << perk_complete
-      counter += 1
-    end
     all_perks
-    binding.pry
   end
-  scrape_perks
+
+  def self.scrape_perk_images
+    page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
+
+    page.css('table.wikitable.sortable tbody tr th a').each do |perk|
+      image_url = nil
+      unedited_name = nil
+      image_url = perk.css('img').attribute('src')
+      unedited_name = perk.css('img').attribute('alt')
+      if image_url != nil || unedited_name != nil
+        edited_name = unedited_name.value.partition(' ').last
+        url = image_url.value
+        File.open("public/images/perks/#{edited_name}", "wb") do |f|
+        f.write(open(image_url).read)
+        end
+      end
+    end
+  end
+
+scrape_perk_images
 end
