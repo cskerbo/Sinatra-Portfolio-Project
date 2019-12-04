@@ -73,14 +73,13 @@ class Scraper
       json_detail = JSON.parse(perk_detail)
       perk_name = json_detail.fetch("name")
       perk_description = json_detail.fetch("lines")
-      binding.pry
-      perk_character = json_detail.fetch("character", nil)
+      perk_owner = json_detail.fetch("character", nil)
       perk_teachable = json_detail.fetch("teachable", nil)
-      if perk_character == nil || perk_teachable == nil
+      if perk_owner == nil || perk_teachable == nil
         perk_complete = {:name => perk_name, :description => perk_description}
         all_perks << perk_complete
       else
-        perk_complete = {:name => perk_name, :description => perk_description, :character => perk_character, :teachable => perk_teachable}
+        perk_complete = {:name => perk_name, :description => perk_description, :perk_owner => perk_owner, :teachable => perk_teachable}
         all_perks << perk_complete
       end
     end
@@ -104,5 +103,4 @@ class Scraper
       end
     end
   end
-  scrape_perks
 end
