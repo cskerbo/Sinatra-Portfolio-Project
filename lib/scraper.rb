@@ -98,8 +98,6 @@ class Scraper
       if image_url != nil || unedited_name != nil
         edited_name = unedited_name.value.partition(' ').last
         url = image_url.value
-        image_list = Dir.glob("public/images/perks/*.{png}")
-        binding.pry
         File.open("public/images/perks/#{edited_name}", "wb") do |f|
         f.write(open(url).read)
         end

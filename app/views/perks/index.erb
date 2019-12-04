@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/perks.css">
 
-
 <div class="character-content">
   <div class="cs-how">
   <h2>How it works.</h2>
@@ -17,12 +16,16 @@
   </div>
   <div class="fplinks">
   <% @perks.each do |perk|%>
+  <%image_match = @image_list.select{|s| s.include?("#{perk.name}")}%>
+  <%image_path_long = image_match * " "%>
+  <%image_path_short = image_path_long.split('c/')[-1]%>
+
   <div class="fplink plainlinks image">
   <div class="box">
   <div class="row">
   <div class="cell">
   <div class="image">
-  <a href="/Dwight_Fairfield" title="<%= perk.name %>"><img alt="<%= perk.name %> Preview Portrait.png" src="images/perks/<%=perk.name%>.png" width="190" height="210" /></a>
+  <a href="/Dwight_Fairfield" title="<%= perk.name %>"><img alt="<%= perk.name %> Preview Portrait.png" src="<%=image_path_short%>" width="190" height="210" /></a>
   </div>
   <div class="link">
   <a href="/Dwight_Fairfield" title="<%= perk.name %>"><%= perk.name %></a>
