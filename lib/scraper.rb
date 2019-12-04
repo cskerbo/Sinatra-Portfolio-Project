@@ -89,6 +89,7 @@ class Scraper
   def self.scrape_perk_images
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
 
+
     page.css('table.wikitable.sortable tbody tr th a').each do |perk|
       image_url = nil
       unedited_name = nil
@@ -97,10 +98,13 @@ class Scraper
       if image_url != nil || unedited_name != nil
         edited_name = unedited_name.value.partition(' ').last
         url = image_url.value
+        image_list = Dir.glob("public/images/perks/*.{png}")
+        binding.pry
         File.open("public/images/perks/#{edited_name}", "wb") do |f|
-        f.write(open(image_url).read)
+        f.write(open(url).read)
         end
       end
     end
   end
+  scrape_perk_images
 end
