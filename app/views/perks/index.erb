@@ -16,11 +16,11 @@
   </div>
   <div class="fplinks">
   <% @perks.each do |perk|%>
-  <%edited_perk_name = perk.name.gsub(/\s+/, "")%>
-  <%image_match = @image_list.select{|s| s.include?("#{edited_perk_name}")}%>
+  <%edited_perk_name = perk.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+  <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
   <%image_path_long = image_match * " "%>
   <%image_path_short = image_path_long.split('c/')[-1]%>
-  
+
   <div class="fplink plainlinks image">
   <div class="box">
   <div class="row">

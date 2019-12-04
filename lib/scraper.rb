@@ -66,6 +66,8 @@ class Scraper
 
   def self.scrape_perks
     all_perks = []
+    survivor_list = self.scrape_survivors
+    killer_list = self.scrape_killers
     perk_name_page = Net::HTTP.get(URI.parse('https://dbd.onteh.net.au/api.php?perks'))
     json = JSON.parse(perk_name_page)
     json.each do |name|
@@ -75,11 +77,17 @@ class Scraper
       perk_description = json_detail.fetch("lines")
       perk_owner = json_detail.fetch("character", nil)
       perk_teachable = json_detail.fetch("teachable", nil)
+      perk_role = json_detail.fetch('role', nil)
       if perk_owner == nil || perk_teachable == nil
-        perk_complete = {:name => perk_name, :description => perk_description}
+        perk_complete = {:name => perk_name, :description => perk_description, :role => perk_role}
         all_perks << perk_complete
-      else
-        perk_complete = {:name => perk_name, :description => perk_description, :perk_owner => perk_owner, :teachable => perk_teachable}
+      elsif perk_owner != nil
+        if survivor_list.select {|s| s[:name].include?(perk_owner)}
+          perk_role = "survivor"
+        elsif killer_list.select {|s| s[:name].include?(perk_owner)}
+          perk_role = "killer"
+        end
+        perk_complete = {:name => perk_name, :description => perk_description, :perk_owner => perk_owner, :teachable => perk_teachable, :role => perk_role}
         all_perks << perk_complete
       end
     end
@@ -104,5 +112,5 @@ class Scraper
       end
     end
   end
-  scrape_perk_images
+  scrape_perks
 end

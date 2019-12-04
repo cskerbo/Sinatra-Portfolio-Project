@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20191126070818) do
     t.string  "name"
     t.string  "description"
     t.string  "perk_owner"
+    t.string  "role"
     t.string  "character_id"
     t.integer "teachable"
     t.integer "user_id"
