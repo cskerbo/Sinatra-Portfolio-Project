@@ -73,6 +73,7 @@ class Scraper
       json_detail = JSON.parse(perk_detail)
       perk_name = json_detail.fetch("name")
       perk_description = json_detail.fetch("lines")
+      binding.pry
       perk_character = json_detail.fetch("character", nil)
       perk_teachable = json_detail.fetch("teachable", nil)
       if perk_character == nil || perk_teachable == nil
@@ -103,6 +104,5 @@ class Scraper
       end
     end
   end
-
-scrape_perk_images
+  scrape_perks
 end
