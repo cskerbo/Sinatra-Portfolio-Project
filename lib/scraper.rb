@@ -112,5 +112,4 @@ class Scraper
       end
     end
   end
-  scrape_perks
 end
