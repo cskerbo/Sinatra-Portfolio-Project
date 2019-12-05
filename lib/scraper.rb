@@ -66,8 +66,20 @@ class Scraper
 
   def self.scrape_perks
     all_perks = []
-    survivor_list = self.scrape_survivors
-    killer_list = self.scrape_killers
+    survivor_list = []
+    unedited_survivor_list = self.scrape_survivors
+    unedited_survivor_list.each do |survivor|
+      survivor_edited = survivor[:name].downcase.gsub(" ", "")
+      survivor_name = {:name => survivor_edited}
+      survivor_list << survivor_name
+    end
+    killer_list = []
+    unedited_killer_list = self.scrape_killers
+    unedited_killer_list.each do |killer|
+      killer_shortened = killer[:name].gsub("The", "").gsub(" ", "")
+      killer_name = {:name => killer_shortened}
+      killer_list << killer_name
+    end
     perk_name_page = Net::HTTP.get(URI.parse('https://dbd.onteh.net.au/api.php?perks'))
     json = JSON.parse(perk_name_page)
     json.each do |name|
@@ -82,9 +94,9 @@ class Scraper
         perk_complete = {:name => perk_name, :description => perk_description, :role => perk_role}
         all_perks << perk_complete
       elsif perk_owner != nil
-        if survivor_list.select {|s| s[:name].include?(perk_owner)}
+        if survivor_list.select {|s| s[:name].downcase.include?(perk_owner.downcase.gsub(" ", ""))}
           perk_role = "survivor"
-        elsif killer_list.select {|s| s[:name].include?(perk_owner)}
+        else killer_list.select {|s| s[:name].downcase.include?(perk_owner.downcase.gsub("the", "").gsub(" ", ""))}
           perk_role = "killer"
         end
         perk_complete = {:name => perk_name, :description => perk_description, :perk_owner => perk_owner, :teachable => perk_teachable, :role => perk_role}
@@ -92,8 +104,9 @@ class Scraper
       end
     end
     all_perks
+    binding.pry
   end
-
+scrape_perks
   def self.scrape_perk_images
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
 

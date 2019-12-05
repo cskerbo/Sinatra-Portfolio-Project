@@ -12,14 +12,46 @@
 </div>
 <div class="container-characters">
   <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-  <div class="heading"><a href="/Survivors" title="Survivors">Perks</a>
+  <div class="heading"><a href="/Survivors" title="Survivors">Survivor Perks</a>
   </div>
   <div class="fplinks">
   <% @perks.each do |perk|%>
-  <%edited_perk_name = perk.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-  <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-  <%image_path_long = image_match * " "%>
-  <%image_path_short = image_path_long.split('c/')[-1]%>
+    <%if perk.role == "survivor"%>
+    <%edited_perk_name = perk.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+    <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+    <%image_path_long = image_match * " "%>
+    <%image_path_short = image_path_long.split('c/')[-1]%>
+  <div class="fplink plainlinks image">
+  <div class="box">
+  <div class="row">
+  <div class="cell">
+  <div class="image">
+  <a href="/Dwight_Fairfield" title="<%= perk.name %>"><img alt="<%= perk.name %> Preview Portrait.png" src="<%=image_path_short%>" width="190" height="210" /></a>
+  </div>
+  <div class="link">
+  <a href="/Dwight_Fairfield" title="<%= perk.name %>"><%= perk.name %></a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <%end%>
+  <%end%>
+  </div>
+  </div>
+</div>
+
+<div class="container-characters">
+  <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+  <div class="heading"><a href="/Survivors" title="Survivors">Killer Perks</a>
+  </div>
+  <div class="fplinks">
+  <% @perks.each do |perk|%>
+    <%if perk.role == "killer"%>
+      <%edited_perk_name = perk.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+      <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+      <%image_path_long = image_match * " "%>
+      <%image_path_short = image_path_long.split('c/')[-1]%>
 
   <div class="fplink plainlinks image">
   <div class="box">
@@ -36,8 +68,8 @@
   </div>
   </div>
   <%end%>
+  <%end%>
   </div>
   </div>
 </div>
-
 </div>
