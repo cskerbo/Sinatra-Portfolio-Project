@@ -14,7 +14,6 @@ gem "tux"
 gem 'sinatra-flash'
 gem 'nokogiri'
 
-
 group :test do
   gem 'rspec'
   gem 'capybara'

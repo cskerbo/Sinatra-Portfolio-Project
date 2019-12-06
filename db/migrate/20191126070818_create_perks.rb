@@ -3,10 +3,9 @@ class CreatePerks < ActiveRecord::Migration
     create_table :perks do |e|
       e.string :name
       e.string :description
-      e.string :perk_owner
       e.string :role
+      e.integer :count
       e.string :character_id
-      e.integer :teachable
       e.integer :user_id
     end
   end
