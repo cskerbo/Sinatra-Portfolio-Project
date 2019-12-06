@@ -8,6 +8,7 @@
 }
 .container-characters {
   width: 50%;
+  overflow: hidden;
 }
 
 
@@ -45,9 +46,7 @@
   color: white;
 }
 
-.fplinks {
-    margin: -5px;
-}
+
 
 .fplink {
     display: inline-block;

@@ -23,10 +23,9 @@ ActiveRecord::Schema.define(version: 20191126070818) do
   create_table "perks", force: :cascade do |t|
     t.string  "name"
     t.string  "description"
-    t.string  "perk_owner"
     t.string  "role"
+    t.integer "count"
     t.string  "character_id"
-    t.integer "teachable"
     t.integer "user_id"
   end
 
