@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="development" uuid="3c72dcf6-dbe1-41d6-8ade-ccf5cbb2d5e7">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\chris\RubymineProjects\Sinatra-Portfolio-Project\db\development.sqlite</jdbc-url>
+    </data-source>
+  </component>
+</project>
