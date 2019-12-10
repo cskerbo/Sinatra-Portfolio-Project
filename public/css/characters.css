@@ -10,8 +10,6 @@
   width: 50%;
 }
 
-
-
 .cs-how {
   display: flex;
   flex-direction: column;
@@ -75,7 +73,7 @@
     width: 100px;
     height: 100px;
     vertical-align: bottom;
-    overflow: hidden;
+
 }
 
 .fplink .box .row .cell {
@@ -111,7 +109,7 @@
     bottom: 0;
     left: 0;
     font-size: 75%;
-    z-index: 1;
+
 }
 
 .fplink a {

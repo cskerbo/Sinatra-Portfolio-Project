@@ -1,11 +1,16 @@
 * {
-      margin: 0;
+      margin: 0 auto;
+}
+
+.clear {
+  clear: both;
 }
 
 html, body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   background: url(/images/survivors.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -18,19 +23,20 @@ html, body {
 .wrapper {
   flex: 1;
   max-width: 100%;
-
+  margin-top: 80px;
+  padding: 5px;
 }
 
 .content {
   height: 100%;
   max-width: 100%;
   min-height: 20%;
-  overflow: auto;
-  display: flex;
+  display: flex 0;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: auto;
+  margin: auto 0;
+
 }
 
 .container {
@@ -43,6 +49,7 @@ html, body {
   justify-content: center;
   align-items: center;
   color: white;
+
 }
 
 .item {
@@ -51,14 +58,16 @@ html, body {
 
 /* Style the header with a grey background and some padding */
 .header {
-  position: sticky;
+  position: fixed;
   left: 0;
+  height: 60px;
+  width: 100%;
   right: 0;
   padding: 2px;
-  overflow: hidden;
   background-color: black;
-  padding: 20px 10px;
+  justify-content: center;
   top: 0;
+  z-index: 3;
 }
 
 /* Style the header links */
@@ -79,6 +88,7 @@ html, body {
 .header a.logo {
   font-size: 25px;
   font-weight: bold;
+  justify-content: center;
 }
 
 /* Change the background color on mouse-over */
@@ -185,7 +195,7 @@ input {
         border: 0;
         color: white;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
 }
 /* width */
 ::-webkit-scrollbar {

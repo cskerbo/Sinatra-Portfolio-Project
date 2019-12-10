@@ -1,43 +1,75 @@
 
-<link rel="stylesheet" type="text/css" href="/css/characters.css">
+<link rel="stylesheet" type="text/css" href="/css/build.css">
 
 <div class="container">
   <div class="character-content">
-    <div class="cs-how">
-      <h2>How it works.</h2>
-      <ol>
-        <li>Select a character</li>
-        <li>Add perks to your character's loadout.</li>
-        <li>Save your build (create a free account to save your builds!)
-        <li>Share your build for others to rate</li>
-      </ol>
-    </div>
-    <div class="container-characters">
-      <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-        <div class="heading"><a href="/Survivors" title="Survivors"><%= @character.name %></a>
+
+    <div class="container-characters" id="character">
+      <div class="fpbox" id="fpcharacter" style="text-align: center;">
+        <div class="heading"><a href="/characters/<%= @character.slug%>" title="/characters/<%= @character.slug%>"><%= @character.name %></a>
         </div>
         <div class="fplinks">
-              <div class="fplink plainlinks image">
+              <div class="character plainlinks image">
                 <div class="box">
                   <div class="row">
                     <div class="cell">
-                      <div class="image">
+                      <div class="character-image">
                         <a href="/characters/<%= @character.slug%>" title="<%= @character.name %>"><img alt="<%= @character.name %> Preview Portrait.png" src="../images/characters/<%=@character.name%>.png" width="190" height="210" /></a>
                       </div>
-                      <div class="link">
-                        <a href="/characters/<%= @character.slug%>" title="<%= @character.name %>"><%= @character.name %></a>
-                      </div>
+
                     </div>
 
                   </div>
                 </div>
               </div>
+          <h2>Bio</h2>
           <div class="bio">
             <p><%= @character.bio %></p>
           </div>
+
         </div>
       </div>
     </div>
+
+    <div class="container-characters" id="perks">
+                <div class="fpbox" id="fpkillers" style="text-align: center;">
+                  <div class="heading"><a href="/Killers" title="Killers">Perks</a>
+                  </div>
+                  <div class="fplinks">
+                    <% @perks.each do |p|%>
+                      <% if p.role == @character.character_type%>
+                        <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+                        <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+                        <%image_path_long = image_match * " "%>
+                        <%image_path_short = image_path_long.split('c/')[-1]%>
+                        <div class="perk-info">
+                        <div class="fplink plainlinks image">
+                          <div class="box">
+                            <div class="row">
+                              <div class="cell">
+
+                                <div class="image">
+                                  <a href="perks/<%= p.slug%>" title="<%= p.name %>"><img alt="<%= p.name %> Preview Portrait.png" src="../<%=image_path_short%>" width="190" height="210" /></a>
+                                </div>
+                                  <div class="link">
+                                  <a href="perks/<%= p.slug%>" title="<%= p.name %>"><%= p.name %></a>
+                                </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                        <div class="description">
+                          <%= p.description %>
+                        </div>
+                        </div>
+                      <%end%>
+                    <%end%>
+                </div>
+              </div>
+              </div>
 
   </div>
 
