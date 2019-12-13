@@ -1,6 +1,5 @@
 
 <link rel="stylesheet" type="text/css" href="/css/build.css">
-
 <div class="container">
   <div class="character-content">
 
@@ -16,9 +15,7 @@
                       <div class="character-image">
                         <a href="/characters/<%= @character.slug%>" title="<%= @character.name %>"><img alt="<%= @character.name %> Preview Portrait.png" src="../images/characters/<%=@character.name%>.png" width="190" height="210" /></a>
                       </div>
-
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -32,45 +29,50 @@
     </div>
 
     <div class="container-characters" id="perks">
+        <div class="fpbox" id="loadout" style="text-align: center;">
+          <div class="heading"><a href="/Killers" title="Killers"> Current Loadout</a>
+          </div>
+          <div class="fplinks">
+                <div class="perk-info">
+                  <div class="fplink plainlinks image">
+                    <div class="box">
+                      <div class="row">
+                        <div class="cell">
+                          <div class="image">
+                          </div>
+                          <div class="link">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
                 <div class="fpbox" id="fpkillers" style="text-align: center;">
                   <div class="heading"><a href="/Killers" title="Killers">Perks</a>
                   </div>
-                  <div class="fplinks">
+
+                  <div class="link">
                     <% @perks.each do |p|%>
                       <% if p.role == @character.character_type%>
                         <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
                         <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
                         <%image_path_long = image_match * " "%>
                         <%image_path_short = image_path_long.split('c/')[-1]%>
-                        <div class="perk-info">
-                        <div class="fplink plainlinks image">
-                          <div class="box">
-                            <div class="row">
-                              <div class="cell">
-
-                                <div class="image">
-                                  <a href="perks/<%= p.slug%>" title="<%= p.name %>"><img alt="<%= p.name %> Preview Portrait.png" src="../<%=image_path_short%>" width="190" height="210" /></a>
-                                </div>
-                                  <div class="link">
-                                  <a href="perks/<%= p.slug%>" title="<%= p.name %>"><%= p.name %></a>
-                                </div>
-
-
-                            </div>
-                          </div>
+                        <%description = p.description.gsub("[", "").gsub("]", "").gsub('""', '') %>
+                        <div class="box" id="tooltip">
+                        <a><img alt="<%= p.name %> Preview Portrait.png" src="../<%=image_path_short%>" width="190" height="210" /></a><a><%= p.name %></a><br>
+                        <span class="tooltiptext"><%=p.description %></span>
                         </div>
-                    </div>
-
-                        <div class="description">
-                          <%= p.description %>
-                        </div>
-                        </div>
-                      <%end%>
                     <%end%>
-                </div>
-              </div>
-              </div>
+                  <%end%>
+                  </div>
+                  </div>
 
+
+
+    </div>
   </div>
-
 </div>
+

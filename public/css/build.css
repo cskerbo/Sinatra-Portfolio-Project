@@ -10,6 +10,12 @@
     width: 60%;
 }
 
+p {
+    text-indent: 45px;
+    padding: 15px;
+
+}
+
 .container-characters#character{
     width: 40%;
 }
@@ -20,11 +26,7 @@
     border: 2px solid;
 }
 
-.description {
-    width: 70%;
-    margin: 5%;
 
-}
 
 .cs-how {
     display: flex;
@@ -68,8 +70,9 @@
 .fplink {
     display: inline-block;
     vertical-align: middle;
+    position: relative;
     width: 15%;
-    margin: 5%;
+    margin: 0.5%;
 }
 
 #fptopsection .fplink.image, #fpflexsection .fplink.image, #fpbottomsection .fplink.image {
@@ -77,11 +80,16 @@
     height: 110px;
 }
 
-.fplink .box {
+.box {
     display: table;
-    width: 100%;
+    width: 15%;
     border-spacing: 5px;
     border-collapse: separate;
+    padding: 5px;
+}
+
+.box:hover {
+    background: #1f1f1f;
 
 }
 
@@ -111,7 +119,7 @@
     vertical-align: middle;
 }
 
-.fplink.image .box .row .cell .image img {
+.link img {
     width: 100px;
     height: 100px;
 }
@@ -123,7 +131,16 @@
 .fplink.image .link a {
     background: #19263e;
     background: rgba(25,38,62,0.5);
-    font-size: 80%;
+    font-size: 70%;
+    padding: 2px;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2px;
 }
 
 .fplink.image .image {
@@ -153,4 +170,44 @@
 
 .fplink.image a {
     z-index: 1;
+}
+
+#tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+#tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    height: auto;
+    background-color: red;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+}
+
+#tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

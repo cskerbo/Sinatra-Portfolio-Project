@@ -91,7 +91,7 @@ class Scraper
        end
      end
      all_perks
-    binding.pry
+
    end
 
 def self.scrape_perk_images
