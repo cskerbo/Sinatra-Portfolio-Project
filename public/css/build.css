@@ -119,7 +119,7 @@ p {
     vertical-align: middle;
 }
 
-.link img {
+.perk-list img {
     width: 100px;
     height: 100px;
 }
@@ -128,14 +128,14 @@ p {
     size: auto;
 }
 
-.fplink.image .link a {
+.fplink.image .perk-list a {
     background: #19263e;
     background: rgba(25,38,62,0.5);
     font-size: 70%;
     padding: 2px;
 }
 
-.link {
+.perk-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -210,4 +210,12 @@ p {
 #tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.loadout {
+    display: flex;
+}
+
+.perk-selection select {
+    width: 100%;
 }

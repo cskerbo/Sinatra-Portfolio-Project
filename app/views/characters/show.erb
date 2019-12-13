@@ -1,4 +1,4 @@
-
+require 'pry'
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <div class="container">
   <div class="character-content">
@@ -20,15 +20,28 @@
     <div class="container-characters" id="perks">
         <div class="fpbox" id="loadout" style="text-align: center;">
           <div class="heading"><a href="/Killers" title="Killers"> Current Loadout</a></div>
+          <div class="loadout">
+          <div class="perk-slot" id="perk-slot-one">
             <div class="perk-selection" id="perk-selection-one">
-              <select>
+              <select id="perk-1" onchange="myFunction(this)">
+                <option value="Select a Perk">Select a Perk</option>
                 <% @perks.each do |p|%>
                   <% if p.role == @character.character_type%>
-                    <option value=<%=p.name%>><%=p.name%></option>
+                    <option value=<%=p.name.gsub(" ", "")%>><%=p.name%></option>
                   <%end%>
                 <%end%>
               </select>
             </div>
+            <div class="perk-selection" id="perk-image"></div>
+            <script>
+                function myFunction(sel) {
+                    var x = sel.options[sel.selectedIndex].text
+                    document.getElementById("perk-image").innerHTML = "result:" + x;
+                }
+            </script>
+
+          </div>
+          <div class="perk-slot" id="perk-slot-two">
             <div class="perk-selection" id="perk-selection-two">
               <select>
                 <%@perks.each do |p|%>
@@ -39,6 +52,8 @@
                 <%end%>
               </select>
             </div>
+          </div>
+            <div class="perk-slot" id="perk-slot-three">
             <div class="perk-selection" id="perk-selection-three">
               <select>
                 <% @perks.each do |p|%>
@@ -48,6 +63,8 @@
                 <%end%>
               </select>
             </div>
+            </div>
+              <div class="perk-slot" id="perk-slot-four">
             <div class="perk-selection" id="perk-selection-four">
               <select>
                 <% @perks.each do |p|%>
@@ -57,12 +74,15 @@
                 <%end%>
               </select>
             </div>
+              </div>
+          </div>
         </div>
+
     <div class="fpbox" id="fpkillers" style="text-align: center;">
-                  <div class="heading"><a href="/Killers" title="Killers">Perks</a>
+                  <div class="heading"><a href="/Killers" title="Perks">Perks</a>
                   </div>
 
-                  <div class="link">
+                  <div class="perk-list">
                     <% @perks.each do |p|%>
                       <% if p.role == @character.character_type%>
                         <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
