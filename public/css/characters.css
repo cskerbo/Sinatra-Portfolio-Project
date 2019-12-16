@@ -17,6 +17,8 @@
   padding-left: 2%;
   width: 40%;
   color: white;
+    background: rgba(0, 0, 0, 0.3);
+
 }
 .fpbox {
     border-radius: 5px;
@@ -129,4 +131,14 @@
 
 .fplink.image a {
     z-index: 2;
+}
+
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0;
+    color: white;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5);
 }

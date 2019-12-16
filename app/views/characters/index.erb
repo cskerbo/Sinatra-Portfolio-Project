@@ -1,15 +1,13 @@
 <link rel="stylesheet" type="text/css" href="/css/characters.css">
-
+<form action="/" method="POST">
 <div class="container">
 <div class="character-content">
   <div class="cs-how">
-  <h2>Create a custom character build</h2><br>
-  <ol>
-    <li>Select a character.</li><br>
-    <li>Assign up to 4 perks to your character's loadout.</li><br>
-    <li>Generate a random build using the perk randomizer!</li><br>
-    <li>Create a free account to save as many custom builds as you want, share your build with other users, and to rate perks other builds!</li><br>
-  </ol>
+  <h2>Enter a name for your build:</h2><br>
+    <input type="text" name="build[name]" id="build_name"><br>
+  <h2>Select a character:</h2><br>
+    <h3>You selected: "character name here"</h3><br>
+    <input type="submit" value="Continue to Perk Selection">
 </div>
 <div class="container-characters">
   <div class="fpbox" id="fpsurvivors" style="text-align: center;">
@@ -20,21 +18,16 @@
   <% if c.character_type == "survivor"%>
   <div class="fplink plainlinks image">
   <div class="box">
-
   <div class="row">
-
   <div class="cell">
-
   <div class="image">
-
   <a href="/characters/<%= c.slug%>" title="<%= c.name %>"><img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" /></a>
   </div>
-
   <div class="link">
-
   <a href="/characters/<%= c.slug%>" title="<%= c.name %>"><%= c.name %></a>
   </div>
   </div>
+    <input id="character_<%= c.id %>" type="checkbox" name="build[character_ids][]" value="<%= c.id %>">
   </div>
   </div>
   </div>
@@ -62,6 +55,7 @@
   <a href="characters/<%= c.slug%>" title="<%= c.name %>"><%= c.name %></a>
   </div>
   </div>
+    <input id="character_<%= c.id %>" type="checkbox" name="build[character_ids][]" value="<%= c.id %>">
   </div>
   </div>
   </div>
@@ -73,3 +67,4 @@
 </div>
 
 </div>
+</form>
