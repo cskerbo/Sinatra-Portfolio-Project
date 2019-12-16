@@ -4,7 +4,7 @@ class CreateCharacters < ActiveRecord::Migration
       c.string :name
       c.string :bio
       c.string :character_type
-      c.string :user_id
+      c.string :build_id
     end
   end
 end

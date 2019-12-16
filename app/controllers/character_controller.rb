@@ -16,4 +16,5 @@ class CharacterController < ApplicationController
    erb :'characters/show'
  end
 
+
 end

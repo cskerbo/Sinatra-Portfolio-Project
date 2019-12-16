@@ -14,16 +14,16 @@
 ActiveRecord::Schema.define(version: 20191209230115) do
 
   create_table "builds", force: :cascade do |t|
-    t.string "character_id"
-    t.string "perk_id"
-    t.string "User_id"
+    t.string  "name"
+    t.integer "user_id"
+    t.integer "character_id"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "bio"
     t.string "character_type"
-    t.string "user_id"
+    t.string "build_id"
   end
 
   create_table "perks", force: :cascade do |t|
@@ -31,8 +31,7 @@ ActiveRecord::Schema.define(version: 20191209230115) do
     t.string  "description"
     t.string  "role"
     t.integer "count"
-    t.string  "character_id"
-    t.integer "user_id"
+    t.integer "build_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,8 +5,7 @@ class CreatePerks < ActiveRecord::Migration
       e.string :description
       e.string :role
       e.integer :count
-      e.string :character_id
-      e.integer :user_id
+      e.integer :build_id
     end
   end
 end

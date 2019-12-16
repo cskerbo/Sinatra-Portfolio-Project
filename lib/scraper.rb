@@ -69,8 +69,6 @@ class Scraper
     counter = 1
     perk_extract.each do |item|
     perk_name_extract = item.css('table.wikitable.sortable tr th[2] a[1]')
-    perk_owner_extract = item.css('table.wikitable.sortable tr th[4] a')
-    perk_owner = perk_owner_extract.map {|owner| owner.attribute('title').text}
     perk_name = perk_name_extract.map {|name| name.attribute('title').text.gsub("\n", "")}
     perk_description_extract = item.css('table.wikitable.sortable tbody tr td')
     perk_description = perk_description_extract.map {|description| description.text.gsub("\n", "")}
@@ -81,11 +79,7 @@ class Scraper
         elsif counter >= 75
           perk_role = "killer"
         end
-        if perk_owner == "" || perk_owner == nil
           perk_complete = {:name => name, :description => description, :count => counter, :role => perk_role}
-        else
-          perk_complete = {:name => name, :description => description, :count => counter, :role => perk_role, :owner => perk_owner}
-          end
           all_perks << perk_complete
         counter += 1
        end
@@ -110,7 +104,7 @@ def self.scrape_perk_images
       end
     end
 end
-  scrape_perks
+
 end
 
 

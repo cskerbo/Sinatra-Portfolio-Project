@@ -1,8 +1,7 @@
 require_relative '../models/concerns/slug.rb'
 
 class Character < ActiveRecord::Base
-  belongs_to :user
-  has_many :perks
+  belongs_to :build
   extend Slug::ClassMethods
   include Slug::InstanceMethods
 end

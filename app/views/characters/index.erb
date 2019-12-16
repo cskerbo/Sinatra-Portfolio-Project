@@ -1,11 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/characters.css">
-<form action="/" method="POST">
+<form action="/build" method="POST">
 <div class="container">
 <div class="character-content">
   <div class="cs-how">
   <h2>Enter a name for your build:</h2><br>
-    <input type="text" name="build[name]" id="build_name"><br>
+    <input type="text" name="build[name]" id="build_name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
   <h2>Select a character:</h2><br>
+    <p>Selecting a character is optional. You can create a build tied to no character by making no character selection and hitting continue below.</p><br>
     <h3>You selected: "character name here"</h3><br>
     <input type="submit" value="Continue to Perk Selection">
 </div>
@@ -27,7 +28,7 @@
   <a href="/characters/<%= c.slug%>" title="<%= c.name %>"><%= c.name %></a>
   </div>
   </div>
-    <input id="character_<%= c.id %>" type="checkbox" name="build[character_ids][]" value="<%= c.id %>">
+    <input id="character_<%= c.id %>" type="checkbox" name="build[character_id]" value="<%= c.id %>">
   </div>
   </div>
   </div>
@@ -55,7 +56,7 @@
   <a href="characters/<%= c.slug%>" title="<%= c.name %>"><%= c.name %></a>
   </div>
   </div>
-    <input id="character_<%= c.id %>" type="checkbox" name="build[character_ids][]" value="<%= c.id %>">
+    <input id="character_<%= c.id %>" type="checkbox" name="build[character_id]" value="<%= c.id %>">
   </div>
   </div>
   </div>
@@ -65,6 +66,5 @@
   </div>
 </div>
 </div>
-
 </div>
 </form>
