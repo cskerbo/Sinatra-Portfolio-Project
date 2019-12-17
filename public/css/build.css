@@ -10,11 +10,54 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+
 }
 
 .container-characters {
+    width: 55%;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-x: auto;
+
+    padding: 5px 5px 5px 5px;
+}
+
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+input#build-name {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0;
     width: 50%;
-    overflow: hidden;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0);
+}
+
+button#submit {
+    -webkit-appearance: push-button;
+    border-radius: 5px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    border: 0;
+    background: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    padding: 0 28px;
+    background: grey;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    transition: all 150ms;
 }
 
 .cs-how {
@@ -23,16 +66,18 @@
     padding-top: 15%;
     padding-left: 2%;
     width: 40%;
+    height: 500px;
     color: white;
+
 }
 .fpbox {
-    border-radius: 5px;
+
     border: 2px solid #1f1f1f;
     box-shadow: 0 0 5px 0 #000000;
     color: #aaa9a9;
     margin: 5px 5px 5px 5px;
     padding: 5px 5px 5px 5px;
-    background: #0b0b0b url(https://deadbydaylight.gamepedia.com/media/deadbydaylight.gamepedia.com/2/2f/Skin-Element-Left-Background.jpg) left
+    background: #0b0b0b url(https://deadbydaylight.gamepedia.com/media/deadbydaylight.gamepedia.com/2/2f/Skin-Element-Left-Background.jpg) left;
 }
 
 .fpbox .heading {
@@ -54,7 +99,36 @@
 .fplink {
     display: inline-block;
     vertical-align: middle;
-    width: 20%;
+
+}
+
+.fplinks {
+    width:100%;
+
+}
+
+.perk-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px;
+    text-align: center;
+    background: rgba(166, 166, 166, 0.1);
+}
+
+.perk-image {
+    width: 15%;
+}
+
+.perk-description {
+    width: 75%;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.perk-text {
+    display: inline-block;
 }
 
 #fptopsection .fplink.image, #fpflexsection .fplink.image, #fpbottomsection .fplink.image {

@@ -1,8 +1,8 @@
-
 require_relative '../models/concerns/slug.rb'
-class Perk < ActiveRecord::Base
-  has_many :build_perks
-  has_many :builds, through: :build_perks
+
+class BuildPerk < ActiveRecord::Base
+  belongs_to :build
+  belongs_to :perk
   extend Slug::ClassMethods
   include Slug::InstanceMethods
 end

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191209230115) do
+ActiveRecord::Schema.define(version: 20191217195556) do
+
+  create_table "build_perks", force: :cascade do |t|
+    t.string  "perk_name"
+    t.string  "build_name"
+    t.integer "build_id"
+    t.integer "perk_id"
+  end
 
   create_table "builds", force: :cascade do |t|
     t.string  "name"

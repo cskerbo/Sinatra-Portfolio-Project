@@ -11,7 +11,7 @@ class CharacterController < ApplicationController
    slug = params[:slug]
    @character = Character.find_by_slug(slug)
    @image_list = Dir.glob("public/images/perks/*.{png}")
-   @perks = Perks.all
+   @perks = Perk.all
 
    erb :'characters/show'
  end
