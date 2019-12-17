@@ -2,31 +2,20 @@
     margin: 0;
 }
 
+.clear {
+    clear: both;
+}
+
 .character-content {
     display: flex;
     flex-direction: row;
-}
-.container-characters#perks {
-    width: 60%;
+    overflow: hidden;
 }
 
-p {
-    text-indent: 45px;
-    padding: 15px;
-
+.container-characters {
+    width: 50%;
+    overflow: hidden;
 }
-
-.container-characters#character{
-    width: 40%;
-}
-
-.perk-info {
-    display: flex;
-    flex-direction: row;
-    border: 2px solid;
-}
-
-
 
 .cs-how {
     display: flex;
@@ -46,7 +35,6 @@ p {
     background: #0b0b0b url(https://deadbydaylight.gamepedia.com/media/deadbydaylight.gamepedia.com/2/2f/Skin-Element-Left-Background.jpg) left
 }
 
-
 .fpbox .heading {
     border-bottom: 1px solid #1f1f1f;
     font-family: 'Roboto',sans-serif;
@@ -61,18 +49,12 @@ p {
     color: white;
 }
 
-.fplinks {
-    margin: -5px;
-
-}
 
 
 .fplink {
     display: inline-block;
     vertical-align: middle;
-    position: relative;
-    width: 15%;
-    margin: 0.5%;
+    width: 20%;
 }
 
 #fptopsection .fplink.image, #fpflexsection .fplink.image, #fpbottomsection .fplink.image {
@@ -80,17 +62,11 @@ p {
     height: 110px;
 }
 
-.box {
+.fplink .box {
     display: table;
-    width: 15%;
+    width: 100%;
     border-spacing: 5px;
     border-collapse: separate;
-    padding: 5px;
-}
-
-.box:hover {
-    background: #1f1f1f;
-
 }
 
 .fplink .box .row {
@@ -119,28 +95,15 @@ p {
     vertical-align: middle;
 }
 
-.perk-list img {
+.fplink.image .box .row .cell .image img {
     width: 100px;
     height: 100px;
 }
 
-.fplink.image .box .row .cell .character-image img {
-    size: auto;
-}
-
-.fplink.image .perk-list a {
+.fplink.image .link a {
     background: #19263e;
     background: rgba(25,38,62,0.5);
-    font-size: 70%;
-    padding: 2px;
-}
-
-.perk-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 2px;
+    font-size: 80%;
 }
 
 .fplink.image .image {
@@ -150,7 +113,7 @@ p {
     bottom: 0;
     left: 0;
     font-size: 75%;
-    z-index: 0;
+    z-index: 1;
 }
 
 .fplink a {
@@ -169,53 +132,5 @@ p {
 }
 
 .fplink.image a {
-    z-index: 1;
-}
-
-#tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-#tooltip .tooltiptext {
-    visibility: hidden;
-    width: auto;
-    height: auto;
-    background-color: red;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-#tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: red transparent transparent transparent;
-}
-
-#tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-.loadout {
-    display: flex;
-}
-
-.perk-selection select {
-    width: 100%;
+    z-index: 2;
 }

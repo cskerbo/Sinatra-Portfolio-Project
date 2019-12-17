@@ -4,6 +4,7 @@ class BuildController < ApplicationController
   get '/build' do
     @characters = Character.all
     @perks = Perks.all
+    @image_list = Dir.glob("public/images/perks/*.{png}")
     erb :'build/new'
   end
 
@@ -17,7 +18,7 @@ class BuildController < ApplicationController
   get '/build/:id' do
     @build = Build.find(params[:id])
     character_id = @build.character_id
-    @character = Character.find(19)
+    @character = Character.find(character_id)
     erb :'build/show'
   end
 
