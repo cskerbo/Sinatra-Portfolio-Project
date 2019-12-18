@@ -29,7 +29,8 @@
         }
     });
 </script>
-<form action="/build" method="POST">
+<form action="/build/<%=@build.id %>" method="POST">
+  <input type="hidden" name="_method"  id="hidden" value="patch">
   <div class="container">
     <div class="character-content">
       <div class="cs-how">

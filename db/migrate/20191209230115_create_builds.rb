@@ -4,7 +4,7 @@ class CreateBuilds < ActiveRecord::Migration
       b.string :name
       b.integer :user_id
       b.integer :character_id
-
+      b.string :build_type
     end
   end
 end

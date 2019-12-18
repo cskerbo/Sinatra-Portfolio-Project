@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20191217195556) do
     t.string  "name"
     t.integer "user_id"
     t.integer "character_id"
+    t.string  "build_type"
   end
 
   create_table "characters", force: :cascade do |t|

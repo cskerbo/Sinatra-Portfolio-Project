@@ -3,22 +3,35 @@ require 'sinatra/flash'
 class BuildController < ApplicationController
 
   get '/build' do
+      @characters = Character.all
+      @perks = Perk.all
+      @image_list = Dir.glob("public/images/perks/*.{png}")
+      erb :'build/index'
+  end
+
+  post '/build/new' do
+
+      @build = Build.create(params[:build])
+      @build.save
+      redirect "build/new/#{@build.id}"
+
+  end
+
+  get '/build/new/:id' do
+    @build = Build.find(params[:id])
     @characters = Character.all
     @perks = Perk.all
     @image_list = Dir.glob("public/images/perks/*.{png}")
     erb :'build/new'
   end
 
-  post '/build' do
-    @build = Build.create(params[:build])
-    if @build.perk_ids.count > 4
-      flash[:error] = "You can only have 4 perks in your loadout, please remove #{@build.perk_ids.count - 4}"
-      else
-      @build.save
-      redirect "/build/#{@build.id}"
-    end
-
+  patch '/build/:id' do
+    @build = Build.find(params[:id])
+    @build.update(params[:build])
+    @build.save
+    redirect to '/build/:id'
   end
+
 
   get '/build/:id' do
     @perks = []
