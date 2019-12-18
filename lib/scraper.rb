@@ -73,7 +73,7 @@ class Scraper
     perk_description_extract = item.css('table.wikitable.sortable tbody tr td')
     perk_description = perk_description_extract.map {|description| description.text.gsub("\n", "")}
     perk_hash = Hash[perk_name.zip(perk_description.map {|i| i.include?(',') ? (i.split /, /) : i})]
-      perk_list = perk_hash.each do |name, description|
+    perk_hash.each do |name, description|
         if counter <= 74
           perk_role = "survivor"
         elsif counter >= 75

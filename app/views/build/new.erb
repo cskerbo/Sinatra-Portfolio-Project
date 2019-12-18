@@ -21,6 +21,13 @@
             $("output").append($("<li />", { text: "No Values" }));
         }
     });
+
+    var limit = 3;
+    $('input.single-checkbox').on('change', function(evt) {
+        if($(this).siblings(':checked').length >= limit) {
+            this.checked = false;
+        }
+    });
 </script>
 <form action="/build" method="POST">
   <div class="container">
@@ -49,7 +56,7 @@
                 <div class="perk-selection">
 
                   <div class="perk-image">
-                    <input id="<%=p.name %>" type="checkbox" name="build[perk_ids][]" value="<%= p.id %>">
+                    <input class="single-checkbox" id="<%=p.name %>" type="checkbox" name="build[perk_ids][]" value="<%= p.id %>">
                 <div class="fplink plainlinks image">
                   <div class="box">
                     <div class="row">

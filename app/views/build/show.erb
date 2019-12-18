@@ -1,2 +1,5 @@
 <h2>Build Name: <%=@build.name %></h2>
-
+<%@perks.each do |p|%>
+  <h3><%=p.name %></h3>
+  <h4> <%=p.description %></h4>
+<%end%>
