@@ -1,5 +1,61 @@
-<h2>Build Name: <%=@build.name %></h2>
-<%@perks.each do |p|%>
-  <h3><%=p.name %></h3>
-  <h4> <%=p.description %></h4>
-<%end%>
+<%require 'pry' %>
+
+<link rel="stylesheet" type="text/css" href="/css/build.css">
+<form action="/build" method="POST">
+  <div class="container">
+    <div class="character-content">
+      <div class="cs-how">
+        <h2>Enter a name for your build:</h2><br>
+        <input type="text" name="build[name]" id="build_name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
+        <h2>Select a character:</h2><br>
+        <p>Selecting a character is optional. You can create a build tied to no character by making no character selection and hitting continue below.</p><br>
+        <h3><input id="character_none>" type="radio" name="build[character_id]" value="0"></h3>
+        <h3>You selected: "character name here"</h3><br>
+        <input type="submit" value="Continue to Perk Selection">
+      </div>
+      <div class="container-characters">
+        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+          <div class="heading"><a href="/Survivors" title="Survivors">Build: <%=@build.name %></a>
+          </div>
+          <div class="fplinks" id="loadout">
+            <%@perks.each do |p|%>
+              <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+              <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+              <%image_path_long = image_match * " "%>
+              <%image_path_short = image_path_long.split('c/')[-1]%>
+              <div class="loadout-display">
+                <div class="perk-top">
+                <div class="fplink plainlinks image">
+                  <div class="box">
+                    <div class="row">
+                      <div class="cell">
+                        <div class="image">
+                          <a href="/perks/<%= p.slug%>" title="<%= p.name %>"><img alt="<%= p.name %> Preview Portrait.png" src="../<%=image_path_short%>" width="190" height="210" /></a>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <br><br>
+                  <div class="link">
+                    <a href="/perks/<%= p.slug%>" title="<%= p.name %>"><%= p.name %></a>
+                  </div>
+                </div>
+
+                <div class="perk-bottom">
+              <div class="description">
+                <p><%=p.description %></p>
+              </div>
+                </div>
+              </div>
+              <%end%>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

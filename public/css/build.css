@@ -170,6 +170,34 @@
     z-index: 2;
 }
 
+.loadout-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+
+.perk-top {
+    margin: 10%;
+    height: 150px;
+}
+
+.perk-bottom {
+    font-size: 95%;
+}
+
+.fplinks#loadout {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 70vh;
+}
+
+.link a {
+    color: white;
+}
+
 input[type='checkbox'] {
     width: 20px;
     height: 20px;

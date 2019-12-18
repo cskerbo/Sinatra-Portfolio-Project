@@ -22,6 +22,7 @@ class BuildController < ApplicationController
 
   get '/build/:id' do
     @perks = []
+    @image_list = Dir.glob("public/images/perks/*.{png}")
     @build = Build.find(params[:id])
     @build.perk_ids.each do |p|
       perk = Perk.find(p)
