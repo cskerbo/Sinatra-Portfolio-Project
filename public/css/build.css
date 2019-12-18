@@ -11,7 +11,6 @@
     flex-direction: row;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.4);
-
 }
 
 .container-characters {
@@ -19,52 +18,16 @@
     height: 80vh;
     overflow-x: hidden;
     overflow-x: auto;
-
     padding: 5px 5px 5px 5px;
 }
 
-input[type='checkbox'] {
-    width: 20px;
-    height: 20px;
-}
 
-input#build-name {
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 0;
-    width: 50%;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0);
-}
-
-button#submit {
-    -webkit-appearance: push-button;
-    border-radius: 5px;
-    height: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-    border: 0;
-    background: none;
-    color: #ffffff;
-    cursor: pointer;
-    text-align: center;
-    align-self: center;
-    padding: 0 28px;
-    background: grey;
-    font-size: 15px;
-    font-weight: 700;
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
-    transition: all 150ms;
-}
 
 .cs-how {
     display: flex;
     flex-direction: column;
-    padding-top: 15%;
-    padding-left: 2%;
+    align-content: center;
+
     width: 40%;
     height: 500px;
     color: white;
@@ -93,8 +56,6 @@ button#submit {
 .heading a {
     color: white;
 }
-
-
 
 .fplink {
     display: inline-block;
@@ -207,4 +168,41 @@ button#submit {
 
 .fplink.image a {
     z-index: 2;
+}
+
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+input#build-name {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0;
+    width: 50%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0);
+}
+
+button#submit {
+    -webkit-appearance: push-button;
+    border-radius: 5px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    border: 0;
+    background: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    padding: 0 28px;
+    background: grey;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    transition: all 150ms;
 }
