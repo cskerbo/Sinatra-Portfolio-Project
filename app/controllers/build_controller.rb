@@ -29,7 +29,7 @@ class BuildController < ApplicationController
     @build = Build.find(params[:id])
     @build.update(params[:build])
     @build.save
-    redirect to '/build/:id'
+    redirect to "/build/#{@build.id}"
   end
 
 
