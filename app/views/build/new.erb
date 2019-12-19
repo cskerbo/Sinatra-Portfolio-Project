@@ -22,14 +22,31 @@
         }
     });
 
-    var limit = 3;
-    $('input.single-checkbox').on('change', function(evt) {
-        if($(this).siblings(':checked').length >= limit) {
-            this.checked = false;
+    function validateForm() {
+        var x = document.forms["build"]["build[name]"].value;
+        if (x == "") {
+            alert("You must enter a name for your build.");
+            return false;
         }
-    });
+    };
+
+    function validatePerks() {
+        var x = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (x < 1) {
+            alert("You must select at least one perk.");
+            return false;
+
+        }
+        if (x > 4) {
+            alert("You can have a maximum of 4 perks. You have currently selected " + x + ".");
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
 </script>
-<form action="/build/<%=@build.id %>" method="POST">
+<form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
   <div class="container">
     <div class="character-content">
@@ -49,7 +66,7 @@
           <div class="fplinks">
 
             <% @perks.each do |p|%>
-              <%if p.role == "survivor"%>
+              <%if p.role == @build.build_type%>
                 <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
                 <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
                 <%image_path_long = image_match * " "%>

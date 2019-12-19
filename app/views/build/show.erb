@@ -5,18 +5,15 @@
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
-        <h2>Enter a name for your build:</h2><br>
-        <input type="text" name="build[name]" id="build_name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-        <h2>Select a character:</h2><br>
-        <p><%=@build.build_type %></p>
-        <p>Selecting a character is optional. You can create a build tied to no character by making no character selection and hitting continue below.</p><br>
-        <h3><input id="character_none>" type="radio" name="build[character_id]" value="0"></h3>
-        <h3>You selected: "character name here"</h3><br>
-        <input type="submit" value="Continue to Perk Selection">
+
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors">Build: <%=@build.name %></a>
+          <div class="heading"><a href="/Survivors" title="Survivors">Build Information</a>
+          </div>
+          <div class="fplinks">
+            <h2>Name: <%=@build.name %></h2>
+            Type: <%=@build.build_type.capitalize %>
           </div>
           <div class="fplinks" id="loadout">
             <%@perks.each do |p|%>

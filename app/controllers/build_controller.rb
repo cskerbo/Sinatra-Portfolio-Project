@@ -10,7 +10,6 @@ class BuildController < ApplicationController
   end
 
   post '/build/new' do
-
       @build = Build.create(params[:build])
       @build.save
       redirect "build/new/#{@build.id}"
@@ -27,9 +26,9 @@ class BuildController < ApplicationController
 
   patch '/build/:id' do
     @build = Build.find(params[:id])
-    @build.update(params[:build])
-    @build.save
-    redirect to "/build/#{@build.id}"
+      @build.update(params[:build])
+      @build.save
+      redirect to "/build/#{@build.id}"
   end
 
 
