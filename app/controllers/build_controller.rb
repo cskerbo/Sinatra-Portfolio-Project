@@ -17,7 +17,6 @@ class BuildController < ApplicationController
     if logged_in?
       @build = current_user.builds.build(params[:build])
       @build.save
-      binding.pry
       redirect "build/new/#{@build.id}"
     else
       redirect to '/login'
@@ -60,6 +59,14 @@ class BuildController < ApplicationController
       erb :'build/show'
     else
       redirect to '/login'
+    end
+  end
+
+  get '/build/user_builds' do
+    if logged_in?
+      current_user
+      @builds = Build.find(:user_id => current_user)
+      binding.pry
     end
   end
 
