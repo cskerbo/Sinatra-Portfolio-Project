@@ -28,7 +28,7 @@ class BuildController < ApplicationController
       @build = Build.find(params[:id])
       @characters = Character.all
       @perks = Perk.all
-      @image_list = Dir.glob("public/images/perks/*.{png}")
+      @image_list = Dir.glob("/images/perks/*.{png}")
       erb :'build/new'
     else
       redirect to '/login'
@@ -62,12 +62,32 @@ class BuildController < ApplicationController
     end
   end
 
-  get '/build/user_builds' do
+  get '/user_builds' do
     if logged_in?
-      current_user
-      @builds = Build.find(:user_id => current_user)
-      binding.pry
+      @image_list = Dir.glob("public/images/perks/*.{png}")
+      @user = current_user
+      @builds = Build.all
+      erb :'build/user_builds'
+    else
+      redirect to '/login'
     end
+  end
+
+  get '/build/:id/edit' do
+    if logged_in?
+      @build = Build.find(params[:id])
+      if @build.user_id == session[:user_id]
+        erb :'build/edit'
+      else
+        redirect to '/all_builds'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  get '/all_builds' do
+    erb :'build/all_builds'
   end
 
 end
