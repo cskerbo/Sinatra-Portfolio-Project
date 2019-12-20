@@ -92,10 +92,34 @@ class BuildController < ApplicationController
     if logged_in?
       @builds = Build.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
+      @users = User.all
     else
       redirect to '/login'
     end
     erb :'build/all_builds'
+  end
+
+  get '/build/:id/delete' do
+    if logged_in?
+      @build = Build.find_by_id(params[:id])
+      @image_list = Dir.glob("public/images/perks/*.{png}")
+      @perks = Perk.all
+      erb :'build/delete'
+    else
+      redirect to '/login'
+    end
+  end
+
+  delete '/build/:id/delete' do
+    if logged_in?
+      @build = Build.find_by_id(params[:id])
+      if @build.user == current_user
+        @build.delete
+      end
+      redirect to '/build/user_builds'
+    else
+      redirect to '/login'
+    end
   end
 
 end

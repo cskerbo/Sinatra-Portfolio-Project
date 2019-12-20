@@ -10,13 +10,15 @@
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors"><%= %>'s Builds</a>
+          <div class="heading"><a href="/Survivors" title="Survivors">All User Builds</a>
           </div>
 
           <div class="fplinks">
             <%@builds.each do |b|%>
 
                 <h2>Name: <%=b.name %></h2>
+              <%user = User.find(b.user_id) %>
+              Username: <%=user.username %>
                 </div>
                 <div class="fplinks" id="loadout">
                   <%b.perks.each do |p| %>
