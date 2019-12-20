@@ -89,6 +89,12 @@ class BuildController < ApplicationController
   end
 
   get '/all_builds' do
+    if logged_in?
+      @builds = Build.all
+      @image_list = Dir.glob("public/images/perks/*.{png}")
+    else
+      redirect to '/login'
+    end
     erb :'build/all_builds'
   end
 
