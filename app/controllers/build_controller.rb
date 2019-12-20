@@ -75,7 +75,9 @@ class BuildController < ApplicationController
 
   get '/build/:id/edit' do
     if logged_in?
-      @build = Build.find(params[:id])
+      @build = Build.find_by_id(params[:id])
+      @perks = Perk.all
+      @image_list = Dir.glob("public/images/perks/*.{png}")
       if @build.user_id == session[:user_id]
         erb :'build/edit'
       else
