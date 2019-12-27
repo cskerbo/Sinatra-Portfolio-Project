@@ -66,7 +66,7 @@ class BuildController < ApplicationController
     if logged_in?
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @user = current_user
-      @builds = Build.all
+      @builds = Build.select{|key| key.user_id == @user.id }
       erb :'build/user_builds'
     else
       redirect to '/login'
@@ -116,7 +116,7 @@ class BuildController < ApplicationController
       if @build.user == current_user
         @build.delete
       end
-      redirect to '/build/user_builds'
+      redirect to 'user_builds'
     else
       redirect to '/login'
     end

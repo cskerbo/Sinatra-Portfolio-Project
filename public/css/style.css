@@ -54,6 +54,7 @@ html, body {
 
 .item {
   align-self: center;
+  align-content: center;
 }
 
 /* Style the header with a grey background and some padding */
@@ -176,7 +177,7 @@ html, body {
     justify-content: center;
     outline: none;
     font-size: 15px;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 35px 20px 15px;
@@ -185,7 +186,6 @@ html, body {
     transition: transform 0.2s;
     transition: transform 0.2s, -webkit-transform 0.2s;
     color: #fbfbfb;
-    margin: 0 auto;
 }
 
 input {
@@ -195,7 +195,7 @@ input {
         border: 0;
         color: white;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.7);
 }
 /* width */
 ::-webkit-scrollbar {
@@ -220,6 +220,7 @@ input {
     height: 50px;
     display: inline-flex;
     align-items: center;
+  align-self: center;
     justify-content: center;
     width: 90px;
     border: 0;
@@ -275,21 +276,18 @@ input {
   flex-direction: row;
   height: 100%;
   margin: 0;
-  min-width: 100%;
-  max-width: 100%;
   justify-content: center;
   align-items: center;
   text-align: right;
 }
 
 .create-account {
-  margin: 0;
+  margin-right: 10%;
   width: 50%;
 }
 
 .create-account#account-features {
-  margin-left: 10%;
-  width: 50%;
+  width: 100%;
   height: 50%;
   background: rgba(0, 0, 0, 0.3);
 }

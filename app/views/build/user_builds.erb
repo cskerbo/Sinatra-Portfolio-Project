@@ -7,6 +7,7 @@
       <div class="cs-how">
 
         <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All User Builds</button>
+        <button id="submit" formaction="/build" formmethod="get">Create a build</button>
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
@@ -14,9 +15,13 @@
           </div>
 
           <div class="fplinks">
+            <%if @builds.count == 0 %>
+              <h2>You currently have no builds.<br><br> The Entity is displeased.</h2><br>
+
+              <%end %>
             <%@builds.each do |b|%>
               <%if b.user_id == @user.id%>
-            <h2>Name: <%=b.name %></h2>
+              <h2>Name: <%=b.name %></h2>
 
           </div>
           <div class="fplinks" id="loadout">
