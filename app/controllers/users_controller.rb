@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     get '/login' do
       if logged_in?
-         redirect to '/users/show'
+         redirect to '/user_builds'
       else
        erb :'users/login'
       end
@@ -37,15 +37,24 @@ class UsersController < ApplicationController
       user = User.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect "/users/show"
+        redirect "/user_builds"
       else
         redirect '/login'
       end
     end
 
+    #Upcoming "My Profile" feature, currently not active
+=begin
     get '/users/show' do
-      erb :'users/show'
+      if logged_in?
+        @user = current_user
+        @builds = Build.select{|key| key.user_id == @user.id }
+        erb :'users/show'
+      else
+        redirect to '/login'
+      end
     end
+=end
 
     get "/logout" do
       session.clear

@@ -1,6 +1,13 @@
 <div class="container">
-<h1 class="item">Placeholder: User specific characters and content </h1>
+  <h1>Welcome, <%=@user.username %>!</h1>
+    <div class="create-account" id="account-features">
 
-<a class="item" href="/signup">Sign Up</a>
-<a class="item" href="/login">Log In</a>
+      <h2>Account Information</h2>
+      <ul>
+        <p>Email: <%=@user.email%></p>
+        <p>Builds Active: <%=@builds.count%></p>
+        <p>Bio:</p>
+      </ul>
+    </div>
+
 </div>

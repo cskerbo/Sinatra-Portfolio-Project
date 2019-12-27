@@ -5,26 +5,29 @@
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
-
-        <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All User Builds</button>
-        <button id="submit" formaction="/build" formmethod="get">Create a build</button>
+        <h1>Welcome, <%=@user.username %>!</h1><br><br>
+        Create a new build:<input class="login-button" type="submit" formaction="/build" formmethod="get" value="Create">
+        View all user builds: <input class="login-button" type="submit" formmethod="get" formaction="/all_builds" value="All Builds">
+        <br><br><br><br>
+        <h2>Account Information</h2><br>
+        <p>Username: <%=@user.username%></p>
+        <p>Email: <%=@user.email %></p>
+        <p>Build Count: <%=@builds.count %></p>
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors"><%=@user.username %>'s Builds</a>
-          </div>
-
+          <div class="heading"><a href="/Survivors" title="Survivors"><%=@user.username %>'s Builds</a></div>
           <div class="fplinks">
             <%if @builds.count == 0 %>
               <h2>You currently have no builds.<br><br> The Entity is displeased.</h2><br>
 
-              <%end %>
+            <%end%>
+          </div>
             <%@builds.each do |b|%>
               <%if b.user_id == @user.id%>
               <h2>Name: <%=b.name %></h2>
-
-          </div>
           <div class="fplinks" id="loadout">
+            <div class="build">
               <%b.perks.each do |p| %>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
               <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -53,13 +56,14 @@
 
 
               </div>
-
               <%end %>
+            </div>
             <div class="perk-bottom">
               <button formaction="/build/<%=b.id %>/edit" formmethod="get">Edit</button>
               <button formaction="/build/<%=b.id %>" formmethod="get">View</button>
               <button formaction="/build/<%=b.id %>/delete" formmethod="get">Delete</button>
             </div>
+                <br>
             <%end%>
             <%end%>
           </div>
