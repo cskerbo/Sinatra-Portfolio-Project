@@ -19,7 +19,7 @@
     height: 80vh;
     overflow-x: hidden;
     overflow-x: auto;
-    padding: 5px 5px 5px 5px;
+
 }
 
 .build-type-selection {
@@ -38,11 +38,19 @@ align-self: center;
     display: flex;
     flex-direction: column;
     align-content: center;
+    align-items: center;
     width: 40%;
     height: 500px;
+    padding-left: 10px;
     color: white;
 
+    height: 80vh;
 }
+
+.cs-how h1 {
+    float: right;
+}
+
 .fpbox {
 
     border: 2px solid #1f1f1f;
@@ -195,6 +203,11 @@ align-self: center;
 
 .loadout-display {
     width: 50%;
+}
+
+.view-description {
+    padding: 10px;
+
 }
 
 .perk-top {

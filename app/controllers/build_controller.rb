@@ -28,7 +28,7 @@ class BuildController < ApplicationController
       @build = Build.find(params[:id])
       @characters = Character.all
       @perks = Perk.all
-      @image_list = Dir.glob("/images/perks/*.{png}")
+      @image_list = Dir.glob("public/images/perks/*.{png}")
       erb :'build/new'
     else
       redirect to '/login'

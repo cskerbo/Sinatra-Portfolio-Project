@@ -5,6 +5,7 @@
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
+        <br><br>
         <button id="submit" type="submit" formmethod="get" formaction="/build/<%=@build.id %>/edit">Edit Build</button><br>
         <button id="submit" type="submit" formmethod="get" formaction="/user_builds">My Builds</button><br>
         <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All User Builds</button>
@@ -18,11 +19,13 @@
             Type: <%=@build.build_type.capitalize %>
           </div>
           <div class="fplinks" id="loadout">
+          <div class="build">
             <%@perks.each do |p|%>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
               <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
               <%image_path_long = image_match * " "%>
               <%image_path_short = image_path_long.split('c/')[-1]%>
+
               <div class="loadout-display">
                 <div class="perk-top">
                 <div class="fplink plainlinks image">
@@ -44,12 +47,12 @@
                   </div>
                 </div>
 
-                <div class="perk-bottom">
-              <div class="description">
+
+              <div class="view-description">
                 <p><%=p.description %></p>
 
               </div>
-                </div>
+
               </div>
               <%end%>
             </div>
