@@ -16,7 +16,7 @@
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors"><%=@user.username %>'s Builds</a></div>
+          <div class="heading"><a href="/Survivors" title="Survivors"><%=@user.username.capitalize %>'s Builds</a></div>
           <div class="fplinks">
             <%if @builds.count == 0 %>
               <h2>You currently have no builds.<br><br> The Entity is displeased.</h2><br>
@@ -26,6 +26,7 @@
             <%@builds.each do |b|%>
               <%if b.user_id == @user.id%>
               <h2>Name: <%=b.name %></h2>
+              Type: <%=b.build_type.capitalize %>
           <div class="fplinks" id="loadout">
             <div class="build">
               <%b.perks.each do |p| %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     get '/signup' do
       if logged_in?
-        redirect to '/users/show'
+        redirect to '/user_builds'
       else
         erb :'users/signup'
       end

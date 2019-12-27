@@ -1,5 +1,5 @@
 * {
-    margin: 0 auto;
+    margin: 0;
 }
 
 .clear {
@@ -10,11 +10,12 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    width: 100%;
     background: rgba(0, 0, 0, 0.4);
 }
 
 .container-characters {
-    width: 55%;
+    width: 60%;
     height: 80vh;
     overflow-x: hidden;
     overflow-x: auto;
@@ -37,7 +38,6 @@ align-self: center;
     display: flex;
     flex-direction: column;
     align-content: center;
-
     width: 40%;
     height: 500px;
     color: white;
@@ -75,7 +75,6 @@ align-self: center;
 
 .fplinks {
     width:100%;
-
 }
 
 .perk-selection {
@@ -103,8 +102,8 @@ align-self: center;
 }
 
 #fptopsection .fplink.image, #fpflexsection .fplink.image, #fpbottomsection .fplink.image {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
 }
 
 .fplink .box {
@@ -119,8 +118,8 @@ align-self: center;
 }
 
 .fplink.image .box .row .cell {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     vertical-align: bottom;
     overflow: hidden;
 }
@@ -147,8 +146,8 @@ align-self: center;
 }
 
 .fplink.image .box .row .cell .image input {
-    width: 180px;
-    height: 180px;
+    width: 100px;
+    height: 100px;
     padding: 0px;
     margin: 0;
 }
@@ -172,7 +171,7 @@ align-self: center;
     bottom: 0;
     left: 0;
     font-size: 75%;
-    z-index: 1;
+    z-index: 0;
 }
 
 .fplink a {
@@ -191,10 +190,12 @@ align-self: center;
 }
 
 .fplink.image a {
-    z-index: 2;
+    z-index: 0;
 }
 
-
+.loadout-display {
+    width: 50%;
+}
 
 .perk-top {
     margin: 10%;

@@ -19,7 +19,7 @@
             Type: <%=@build.build_type.capitalize%>
           </div>
           <div class="fplinks" id="loadout">
-            <%@perks.each do |p|%>
+            <%@build.perks.each do |p|%>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
               <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
               <%image_path_long = image_match * " "%>
