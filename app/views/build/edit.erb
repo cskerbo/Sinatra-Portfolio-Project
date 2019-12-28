@@ -43,15 +43,70 @@
                       </div>
                     </div>
                   </div>
+                  <div class="perk-selection" id="perk-selection-one">
+                    <select id="perk-1" name="build[perk_ids][]" onchange="myFunction(this)">
+                      <option value="Select a Perk">Select a Perk</option>
+                      <% @perks.each do |m|%>
+                        <% if m.role == @build.build_type%>
+                          <%if m.name == p.name %>
+                            <option selected="selected" value=<%=m.id%>><%=m.name%></option>
+                            <%else%>
+                            <option value=<%=m.id%>><%=m.name%></option>
+                          <%end%>
+                          <%end%>
+
+                        <%end%>
+
+                    </select>
+                  </div>
                 </div>
                 <br>
+
             <%end%>
+            <%if @build.perks.count < 4 %>
+                <%counter = @build.perks.count %>
+                <% while counter < 4 %>
+                <div class="loadout-display">
+                  <div class="perk-top">
+                    <div class="fplink plainlinks image">
+                      <div class="box">
+                        <div class="row">
+                          <div class="cell">
+                            <div class="image">
+                              <a href="empty" title="empty"><img alt="Empty" src="/images/icon_perks.png"  width="190" height="210" /></a>
+                            </div>
+                            <div class="link">
+                              <a href="empty" title="empty">Empty</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="perk-selection" id="perk-selection-one">
+                    <select id="perk-1" name="build[perk_ids][]" onchange="myFunction(this)">
+                      <option value="Select a Perk">Select a Perk</option>
+                      <% @perks.each do |m|%>
+                        <% if m.role == @build.build_type%>
+                            <option value=<%=m.id%>><%=m.name%></option>
+                          <%end%>
+                        <%end%>
+                    </select>
+                  </div>
+                </div>
+                  <% counter += 1 %>
+                  <%end %>
+
+              <%end %>
+
             </div>
 
 
           </div>
         </div>
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+
+
+        <!--<div class="fpbox" id="fpsurvivors" style="text-align: center;">
           <div class="heading"><a href="/Survivors" title="Survivors">Perk Selection</a>
           </div>
 
@@ -66,7 +121,7 @@
                 <div class="perk-selection">
 
                   <div class="perk-image">
-                    <input class="single-checkbox" id="<%=p.name %>" type="checkbox" name="build[perk_ids][]" value="<%= p.id %>">
+                    <input class="single-checkbox" id="<%=p.name %>" type="checkbox" name="build[perk_ids][]" value="<%= p.id %>" <%='checked' if @build.perks.include?(p) %>>
                     <div class="fplink plainlinks image">
                       <div class="box">
                         <div class="row">
@@ -92,11 +147,8 @@
                 <br>
               <%end%>
             <%end%>
-
-
-
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
