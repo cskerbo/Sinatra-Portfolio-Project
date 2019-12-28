@@ -1,6 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
-<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    function display_div(show){
+        document.getElementById('1').style.display = "none";
+        document.getElementById(show).style.display = "block";
+
+    };
+</script>
 <!--PERSONAL SCRIPT JavaScript-->
 <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
@@ -44,7 +50,7 @@
                     </div>
                   </div>
                   <div class="perk-selection" id="perk-selection-one">
-                    <select id="perk-1" name="build[perk_ids][]" onchange="myFunction(this)">
+                    <select id="optionList" name="build[perk_ids][]" onchange="display_div(document.getElementById('optionList').value);">
                       <option value="Select a Perk">Select a Perk</option>
                       <% @perks.each do |m|%>
                         <% if m.role == @build.build_type%>
@@ -54,11 +60,14 @@
                             <option value=<%=m.id%>><%=m.name%></option>
                           <%end%>
                           <%end%>
+                      <%end%>
+                        </select>
 
-                        <%end%>
 
-                    </select>
+
+
                   </div>
+
                 </div>
                 <br>
 
@@ -84,14 +93,20 @@
                     </div>
                   </div>
                   <div class="perk-selection" id="perk-selection-one">
-                    <select id="perk-1" name="build[perk_ids][]" onchange="myFunction(this)">
+                    <select id="optionList" name="build[perk_ids][]" onchange="display_div(document.getElementById('optionList').value);">
                       <option value="Select a Perk">Select a Perk</option>
                       <% @perks.each do |m|%>
                         <% if m.role == @build.build_type%>
-                            <option value=<%=m.id%>><%=m.name%></option>
-                          <%end%>
+                            <option class="unique" value=<%=m.id%>><%=m.name%></option>
                         <%end%>
+                      <%end%>
                     </select>
+                    <% @perks.each do |m|%>
+                      <% if m.role == @build.build_type%>
+                        <div id="<%=m.id%>" style="display:none;" value=<%=m.id%>><%=m.description%></div>
+                      <%end%>
+                    <%end%>
+
                   </div>
                 </div>
                   <% counter += 1 %>
