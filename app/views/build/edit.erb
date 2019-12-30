@@ -2,19 +2,17 @@
 <!--LINK JQUERY-->
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 <script>
-    $(document).ready(function(){
-        $("select").change(function(){
-            $(this).find("option:selected").each(function(){
-                var optionValue = $(this).attr("value");
-                if(optionValue){
-                    $(".id").not("." + optionValue).hide();
-                    $("." + optionValue).show();
-                } else{
-                    $(".id").hide();
-                }
-            });
-        }).change();
-    });
+    function handleSelectChange(index) {
+                $(this).find("option:selected").each(function(){
+                    var optionValue = $(this).attr("value");
+                    if(optionValue){
+                        $(".id" + index).not("." + optionValue).hide();
+                        $("." + optionValue).show();
+                    } else{
+                        $(".id" + index).hide();
+                    }
+                });
+            }
 </script>
 <!--PERSONAL SCRIPT JavaScript-->
 <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
@@ -36,6 +34,7 @@
           </div>
           <div class="fplinks" id="loadout">
             <div class="build">
+              <%counter = 1 %>
             <% @build.perks.each do |p|%>
                 <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
                 <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -59,28 +58,27 @@
                     </div>
                   </div>
                   <div class="perk-selection" id="perk-selection-one">
-                    <select id="optionList" name="build[perk_ids][]">
+                    <select id="optionList<%=counter%>" name="build[perk_ids][]" onchange="handleSelectChange('<%=counter %>');">
+
                       <option value="Select a Perk">Select a Perk</option>
                       <% @perks.each do |m|%>
                         <% if m.role == @build.build_type%>
                           <%if m.name == p.name %>
-                            <option selected="selected" value="<%=m.id%>"><%=m.name%></option>
+                            <option selected="selected" value="<%=m.id%><%=counter %>"><%=m.name%></option>
                             <%else%>
                             <option value="<%=m.id%>"><%=m.name%></option>
                           <%end%>
                           <%end%>
                       <%end%>
+
                         </select>
                     <% @perks.each do |m|%>
                       <% if m.role == @build.build_type%>
-                        <div id="<%=m.id%> id" class="<%=m.id%> id" style="display:none;" value=<%=m.id%>><%=m.description%></div>
+                        <div id="<%=m.id%>" class="<%=m.id%><%=counter%>" style="display:none;" value="<%=m.id%>"><%=m.description%></div>
                       <%end%>
                     <%end%>
-
-
-
+                    <%counter += 1 %>
                   </div>
-
                 </div>
                 <br>
 
