@@ -1,82 +1,44 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
-<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
-<script>
-    // Create a global dictionary, mapping perk keys to perk descriptions
-    // Each perk needs some kind of unique identifier -- could be a number you generate, or just the perk name
-    var perkDescriptions = {
-        "none": "Please select a perk from the list above",
-    <%@perks.each do |p| %>
-        <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-        <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-        <%image_path_long = image_match * " "%>
-        <%image_path_short = image_path_long.split('c/')[-1]%>
-        "perk-option-<%=p.id %>": "<div class='perk-icon'><img alt=\"Empty\" src=\"/<%=image_path_short%>\"  width=\"190\" height=\"210\" /></div><div class='perk-description'><%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %></div>",
-     <%end %>
-    };
-
-    // Handles selection changes in the four <select> lists
-    function handlePerkChange(perkNumber) {
-        // Get a reference to the <div> and <select> with ids perkX-description and perkX-select-list
-        let targetDiv = document.getElementById("perk" + perkNumber + "-description");
-        let targetSelect = document.getElementById("perk" + perkNumber + "-select-list");
-        // Get the value of the currently selected option in the <select>
-        let selectedValue = targetSelect.options[targetSelect.selectedIndex].value;
-        // Get the description for the selected perk from our dictionary
-        let perkDescription = perkDescriptions[selectedValue];
-        // Set the target <div> contents to the value from our dictionary
-        targetDiv.innerHTML = perkDescription;
-    }
-
-    // Function called once the browser has finished loading and parsing the HTML document
-    // Running the same code inline (before the page is finished loading) would result in null references,
-    // because JavaScript can't reference something the browser hasn't parsed from the document yet
-    function initPage() {
-        // Loop through each perk slot setting the description to the selected perk
-        // Initially, this will just load the default "none" descriptions
-        for (let index = 1; index <= 4; index++) {
-            handlePerkChange(index);
-        }
-    }
-</script>
-<!--PERSONAL SCRIPT JavaScript-->
-<body onload="initPage();">
+<body>
 <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
-        <br>
-        <h2>Enter a name for your build:</h2><br>
-        <input type="text" name="build[name]" id="build-name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-        <h2>Select up to 4 perks.</h2><br>
-        <p>Current perks selected:</p><br>
-        <output>0 are checked<br><br><ul><li>No Values</li></ul></output><br>
-        <button id="submit" type="submit">Save Build</button>
+        <h1>Editing build: <span style="color: red"><%=@build.name %></span></h1>
+        <h3>Build Type: <%=@build.build_type.capitalize %></h3>
+        <h3>Date Created: Placeholder</h3>
+        <h3>Last Edited: Placeholder</h3>
+        <h3>Keep your existing build name, or enter a new one:</h3><br>
+        <input type="text" name="build[name]" id="build-name" value="<%=@build.name%>" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
+        <div class="buttons">
+        <button id="submit" type="submit">Save</button>
+        <button id="submit" formaction="/build/<%=@build.id %>/delete" formmethod="get">Delete</button>
+        <button id="submit" formaction="/user_builds" formmethod="get">Cancel</button>
+        </div>
+        <div class="build-character">
+          <p>Placeholder for character info</p>
+        </div>
       </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors">Current Build</a>
-          </div>
+          <div class="heading">Current Build</div>
           <div class="fplinks" id="loadout">
             <div class="build">
               <%counter = 1 %>
             <% @build.perks.each do |p|%>
-                <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-                <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-                <%image_path_long = image_match * " "%>
-                <%image_path_short = image_path_long.split('c/')[-1]%>
                   <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
                     <div class="perk-selection">
-                    <h4>Slot <%=counter %></h4>
+                    <h3>Slot <%=counter %></h3>
                     <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option value="none">Select a perk</option>
+                      <option value="none">Empty - Select a Perk</option>
                       <%@perks.each do |m| %>
                         <% if m.role == @build.build_type%>
                           <%if m.name == p.name %>
-                          <option value="perk-option-<%=m.id %>" selected="selected"><%=m.name %></option>
+                          <option value="<%=m.id %>" selected="selected"><%=m.name %></option>
                           <%else%>
-                      <option value="perk-option-<%=m.id %>"><%=m.name %></option>
+                      <option value="<%=m.id %>"><%=m.name %></option>
                             <%end %>
                           <%end %>
                         <%end %>
@@ -86,59 +48,33 @@
                   </div>
                     <%counter += 1 %>
               <%end%>
+              <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
+              <%if @build.perks.count < 4 %>
+              <% counter = @build.perks.count%>
+              <%while counter < 4 %>
+                  <%counter += 1 %>
+                <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+                  <div class="perk-selection">
+                    <h4>Slot <%=counter %></h4>
+                    <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
+                      <option value="none" selected="selected">Select a perk</option>
+                      <%@perks.each do |m| %>
+                        <% if m.role == @build.build_type%>
+                            <option value="<%=m.id %>"><%=m.name %></option>
+                          <%end %>
+                        <%end %>
+                    </select>
+                  </div>
+                  <div id="perk<%=counter %>-description" class="perk-slot"></div>
+                </div>
+              <%end%>
+              <%end%>
                 </div>
                 <br>
-
               </div>
             </div>
-
           </div>
         </div>
-
-
-        <!--<div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors">Perk Selection</a>
-          </div>
-
-          <div class="fplinks">
-
-            <% @perks.each do |p|%>
-              <%if p.role == @build.build_type%>
-                <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-                <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-                <%image_path_long = image_match * " "%>
-                <%image_path_short = image_path_long.split('c/')[-1]%>
-                <div class="perk-selection">
-
-                  <div class="perk-image">
-                    <input class="single-checkbox" id="<%=p.name %>" type="checkbox" name="build[perk_ids][]" value="<%= p.id %>" <%='checked' if @build.perks.include?(p) %>>
-                    <div class="fplink plainlinks image">
-                      <div class="box">
-                        <div class="row">
-
-                          <div class="cell">
-
-                            <div class="image">
-                              <a href="/perks/<%= p.slug%>" title="<%= p.name %>"><img alt="<%= p.name %> Preview Portrait.png" src="/<%=image_path_short%>" width="190" height="210" /></a>
-                            </div>
-                            <div class="link">
-                              <a href="/perks/<%= p.slug%>" title="<%= p.name %>"><%= p.name %></a>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="perk-description">
-                    <div class="perk-text"><%=p.description %></div>
-                  </div>
-                </div>
-                <br>
-              <%end%>
-            <%end%>
-          </div>
-        </div>-->
       </div>
 </form>
 </body>

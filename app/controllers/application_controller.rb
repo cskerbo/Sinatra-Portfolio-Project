@@ -12,6 +12,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @characters = Character.all
+    @perks = Perk.all
+    @image_list = Dir.glob("public/images/perks/*.{png}")
     erb :index
   end
 

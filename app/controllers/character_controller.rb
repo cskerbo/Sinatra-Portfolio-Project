@@ -4,6 +4,8 @@ class CharacterController < ApplicationController
 
  get '/characters' do
    @characters = Character.all
+   @perks = Perk.all
+   @image_list = Dir.glob("public/images/perks/*.{png}")
    erb :'characters/index'
  end
 
