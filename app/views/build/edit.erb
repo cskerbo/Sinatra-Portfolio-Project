@@ -7,14 +7,12 @@
     var perkDescriptions = {
         "none": "Please select a perk from the list above",
     <%@perks.each do |p| %>
-        "perk-option-<%=p.id %>": "<%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %>",
+        <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+        <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+        <%image_path_long = image_match * " "%>
+        <%image_path_short = image_path_long.split('c/')[-1]%>
+        "perk-option-<%=p.id %>": "<div class='perk-icon'><img alt=\"Empty\" src=\"/<%=image_path_short%>\"  width=\"190\" height=\"210\" /></div><div class='perk-description'><%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %></div>",
      <%end %>
-    };
-
-    var perkIcons = {
-        <%@perks.each do |p| %>
-        "perk-icon-<%=p.id %>": "<a><img src='public/images/icon_perks.png'></a>",
-        <%end %>
     };
 
     // Handles selection changes in the four <select> lists
@@ -30,18 +28,6 @@
         targetDiv.innerHTML = perkDescription;
     }
 
-    function handleIconChange(iconNumber) {
-        // Get a reference to the <div> and <select> with ids perkX-description and perkX-select-list
-        let targetDiv = document.getElementById("icon" + iconNumber + "-description");
-        let targetSelect = document.getElementById("perk" + iconNumber + "-select-list");
-        // Get the value of the currently selected option in the <select>
-        let selectedValue = targetSelect.options[targetSelect.selectedIndex].value;
-        // Get the description for the selected perk from our dictionary
-        let perkIcons = perkIcons[selectedValue];
-        // Set the target <div> contents to the value from our dictionary
-        targetDiv.innerHTML = perkIcons;
-    }
-
     // Function called once the browser has finished loading and parsing the HTML document
     // Running the same code inline (before the page is finished loading) would result in null references,
     // because JavaScript can't reference something the browser hasn't parsed from the document yet
@@ -50,9 +36,6 @@
         // Initially, this will just load the default "none" descriptions
         for (let index = 1; index <= 4; index++) {
             handlePerkChange(index);
-        }
-        for (let index = 1; index <= 4; index++) {
-            handleIconChange(index);
         }
     }
 </script>
@@ -83,11 +66,10 @@
                 <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
                 <%image_path_long = image_match * " "%>
                 <%image_path_short = image_path_long.split('c/')[-1]%>
-                <div class="loadout-display" id="perk-container">
-                  <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>'), handleIconChange('<%=counter %>');">
-                    <div id="icon<%=counter %>-description" class="perk-description"></div>
-                    <h4>Perk 1</h4>
-                    <select id="perk<%=counter %>-select-list">
+                  <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+                    <div class="perk-selection">
+                    <h4>Slot <%=counter %></h4>
+                    <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
                       <option value="none">Select a perk</option>
                       <%@perks.each do |m| %>
                         <% if m.role == @build.build_type%>
@@ -99,58 +81,16 @@
                           <%end %>
                         <%end %>
                     </select>
-                    <div id="perk<%=counter %>-description" class="perk-description"></div>
+                    </div>
+                    <div id="perk<%=counter %>-description" class="perk-slot"></div>
                   </div>
                     <%counter += 1 %>
-
+              <%end%>
                 </div>
                 <br>
 
-            <%end%>
-            <%if @build.perks.count < 4 %>
-                <%counter = @build.perks.count %>
-                <% while counter < 4 %>
-                <div class="loadout-display">
-                  <div class="perk-top">
-                    <div class="fplink plainlinks image">
-                      <div class="box">
-                        <div class="row">
-                          <div class="cell">
-                            <div class="image">
-                              <a href="empty" title="empty"><img alt="Empty" src="/images/icon_perks.png"  width="190" height="210" /></a>
-                            </div>
-                            <div class="link">
-                              <a href="empty" title="empty">Empty</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="perk-selection" id="perk-selection-one">
-                    <select id="optionList" name="build[perk_ids][]">
-                      <option value="Select a Perk">Select a Perk</option>
-                      <% @perks.each do |m|%>
-                        <% if m.role == @build.build_type%>
-                            <option class="unique" value="<%=m.id%>"><%=m.name%></option>
-                        <%end%>
-                      <%end%>
-                    </select>
-                    <% @perks.each do |m|%>
-                      <% if m.role == @build.build_type%>
-                        <div id="<%=m.id%> id" class="<%=m.id%> id" style="display:none;" value="<%=m.id%>"><%=m.description%></div>
-                      <%end%>
-                    <%end%>
-
-                  </div>
-                </div>
-                  <% counter += 1 %>
-                  <%end %>
-
-              <%end %>
-
+              </div>
             </div>
-
 
           </div>
         </div>
@@ -200,7 +140,5 @@
           </div>
         </div>-->
       </div>
-    </div>
-  </div>
 </form>
 </body>
