@@ -2,6 +2,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 require 'resolv-replace'
+require 'json'
+require 'csv'
 
 class Scraper
 
@@ -74,6 +76,10 @@ class Scraper
     perk_description = perk_description_extract.map {|description| description.text.gsub("\n", "")}
     perk_hash = Hash[perk_name.zip(perk_description.map {|i| i.include?(',') ? (i.split /, /) : i})]
     perk_hash.each do |name, description|
+      description.each do |d|
+        fixed = d.gsub(/[\r\n]+/, ' ')
+        binding.pry
+      end
         if counter <= 74
           perk_role = "survivor"
         elsif counter >= 75
@@ -86,7 +92,18 @@ class Scraper
      end
      all_perks
 
-   end
+  end
+
+  def self.scrape_perks_new
+    array = []
+    csv_text = File.read("./lib/dbd2.csv").force_encoding('utf-8').encode.sub("\xEF\xBB\xBF", '')
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      item = row.to_hash
+      array << item
+    end
+    array
+  end
 
 def self.scrape_perk_images
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
@@ -155,3 +172,5 @@ end
   #end
 scrape_perks
 =end
+
+
