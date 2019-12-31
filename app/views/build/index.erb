@@ -1,43 +1,57 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
+<script>
+</script>
 <form action="/build/new" method="POST">
   <div class="container">
-    <div class="build-type-container">
-      <div class="build-type-selection">
-        <h2 class="item">Select your build type:</h2><br><br>
-        <div class="fplink plainlinks image">
-          <div class="box">
-            <div class="row">
-              <div class="cell" id="cell-selection">
-                <div class="image">
-                  <button type="submit" name=build[build_type] value="survivor"><img  alt="Survivor Icon" src="images/icon_survivor.png" width="190" height="210" /></button>
-                </div>
-                <div class="link">
-                  <a id="selection">Survivor</a>
-                </div>
-              </div>
+    <div class="character-content">
+      <div class="cs-how">
+        <h1>New Build<span style="color: red"></span></h1>
 
+        <h3>Select a build type:</h3><br>
+        <div class="type-buttons">
+          <p>Survivor</p>
+          <img  alt="Survivor Icon" src="images/icon_survivor.png" width="130" height="130" />
+          <label class="switch" onchange="handleCharacterSelection(1);">
+            <input type="checkbox" name=build[build_type] value="1" id='character-type-1'>
+            <span class="slider round"></span>
+          </label>
+          <p>Killer</p>
+          <img  alt="Killer Icon" src="images/icon_killer.png" width="130" height="130" />
+          <label class="switch">
+            <input type="checkbox" name=build[build_type] value="2" id="character-type-2">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      <div class="container-characters">
+        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+          <div class="heading">Character Selection</div>
+          <div class="fplinks" id="loadout">
+            <div class="character-selection" id="character-selection-1">
+              <%@characters.each do |c| %>
+              <%if c.character_type == "survivor" %>
+            <div class="character">
+              <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+                          <div class="character-image">
+                            <img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" />
+                          </div>
+                  <div class="character-description">
+                  <p><%=c.bio %></p>
+                  </div>
             </div>
+              <% end %>
+              <% end %>
+
+              </div>
+            </div>
+            <div class="character-selection" id="character-selection-2"></div>
+            </div>
+            <br>
           </div>
         </div>
-        <div class="fplink plainlinks image">
-          <div class="box">
-            <div class="row">
-              <div class="cell" id="cell-selection">
-                <div class="image">
-                  <button type="submit" name=build[build_type] value="killer"><img alt="Killer Icon" src="images/icon_killer.png" width="190" height="210" />
-                </div>
-                <div class="link">
-                  <a id="selection">Killer</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><br>
-
-
       </div>
     </div>
   </div>
 </form>
+

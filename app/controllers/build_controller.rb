@@ -64,6 +64,7 @@ class BuildController < ApplicationController
 
   get '/user_builds' do
     if logged_in?
+      @perks = Perk.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @user = current_user
       @builds = Build.select{|key| key.user_id == @user.id }
