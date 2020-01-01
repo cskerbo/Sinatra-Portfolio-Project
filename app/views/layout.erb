@@ -7,47 +7,9 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/responsive.css">
   <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
-  <script>
-      // Create a global dictionary, mapping perk keys to perk descriptions
-      // Each perk needs some kind of unique identifier -- could be a number you generate, or just the perk name
-      var perkDescriptions = {
-          "none": "<div class='perk-icon'><img alt=\"Empty\" src=\"/images/icon_perks.png\"  width=\"190\" height=\"210\" /></div><div class='perk-description'>No Perk Selected</div>",
-          <%@perks.each do |p| %>
-          <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-          <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-          <%image_path_long = image_match * " "%>
-          <%image_path_short = image_path_long.split('c/')[-1]%>
-          "<%=p.id %>": "<div class='perk-icon'><img alt=\"Empty\" src=\"/<%=image_path_short%>\"  width=\"190\" height=\"210\" /><%=p.name %></div><div class='perk-description'><%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %></div>",
-          <%end %>
-      };
-
-      // Handles selection changes in the four <select> lists
-      function handlePerkChange(perkNumber) {
-          // Get a reference to the <div> and <select> with ids perkX-description and perkX-select-list
-          let targetDiv = document.getElementById("perk" + perkNumber + "-description");
-          let targetSelect = document.getElementById("perk" + perkNumber + "-select-list");
-          // Get the value of the currently selected option in the <select>
-          let selectedValue = targetSelect.options[targetSelect.selectedIndex].value;
-          // Get the description for the selected perk from our dictionary
-          let perkDescription = perkDescriptions[selectedValue];
-          // Set the target <div> contents to the value from our dictionary
-          targetDiv.innerHTML = perkDescription;
-      }
-
-      // Function called once the browser has finished loading and parsing the HTML document
-      // Running the same code inline (before the page is finished loading) would result in null references,
-      // because JavaScript can't reference something the browser hasn't parsed from the document yet
-      function initPage() {
-          // Loop through each perk slot setting the description to the selected perk
-          // Initially, this will just load the default "none" descriptions
-          for (let index = 1; index <= 4; index++) {
-              handlePerkChange(index);
-          }
-      }
-  </script>
   <title>DBD Character Builder</title>
 </head>
-  <body onload="initPage();">
+  <body>
   <div class="header">
     <a href="/" class="logo"><img src="/images/logo.jpg" style="width:75px; height:40px"></a>
     <div class="header-right">

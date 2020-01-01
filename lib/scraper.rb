@@ -105,6 +105,17 @@ class Scraper
     array
   end
 
+  def self.scrape_characters_new
+    array = []
+    csv_text = File.read("./lib/survivor_overview.csv")
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      item = row.to_hash
+      array << item
+    end
+    array
+  end
+
 def self.scrape_perk_images
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
     page.css('table.wikitable.sortable tbody tr th a').each do |perk|

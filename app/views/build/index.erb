@@ -1,6 +1,14 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function(){
+        $('input[type="checkbox"]').click(function(){
+            var inputValue = $(this).attr("value");
+            $("." + inputValue).toggle();
+        });
+    });
+
 </script>
 <form action="/build/new" method="POST">
   <div class="container">
@@ -8,47 +16,75 @@
       <div class="cs-how">
         <h1>New Build<span style="color: red"></span></h1>
 
-        <h3>Select a build type:</h3><br>
+        <h2>Select a build type:</h2><br>
+        <div class="button-selection">
         <div class="type-buttons">
-          <p>Survivor</p>
+          <h3>Survivor</h3>
           <img  alt="Survivor Icon" src="images/icon_survivor.png" width="130" height="130" />
-          <label class="switch" onchange="handleCharacterSelection(1);">
-            <input type="checkbox" name=build[build_type] value="1" id='character-type-1'>
-            <span class="slider round"></span>
-          </label>
-          <p>Killer</p>
-          <img  alt="Killer Icon" src="images/icon_killer.png" width="130" height="130" />
           <label class="switch">
-            <input type="checkbox" name=build[build_type] value="2" id="character-type-2">
+            <input type="checkbox" name=build[build_type] value="survivor">
             <span class="slider round"></span>
           </label>
         </div>
+            <div class="type-buttons">
+          <h3>Killer</h3>
+          <img  alt="Killer Icon" src="images/icon_killer.png" width="130" height="130" />
+          <label class="switch">
+            <input type="checkbox" name=build[build_type] value="killer">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div><br>
+        <button id="submit" type="submit">Continue</button>
       </div>
-      <div class="container-characters">
+      <div id="container-characters" class="survivor" style="display: none">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
           <div class="heading">Character Selection</div>
           <div class="fplinks" id="loadout">
-            <div class="character-selection" id="character-selection-1">
+            <div class="build">
               <%@characters.each do |c| %>
               <%if c.character_type == "survivor" %>
-            <div class="character">
+            <div id="survivor">
               <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
                           <div class="character-image">
                             <img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" />
                           </div>
                   <div class="character-description">
-                  <p><%=c.bio %></p>
+                  <p><%=c.overview %></p>
                   </div>
             </div>
               <% end %>
               <% end %>
-
               </div>
             </div>
             <div class="character-selection" id="character-selection-2"></div>
             </div>
             <br>
           </div>
+      <div id="container-characters" class="killer" style="display: none">
+        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
+          <div class="heading">Character Selection</div>
+          <div class="fplinks" id="loadout">
+            <div class="build">
+              <%@characters.each do |c| %>
+                <%if c.character_type == "killer" %>
+                  <div id="killer">
+                    <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+                    <div class="character-image">
+                      <img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" />
+                    </div>
+                    <div class="character-description">
+                      <p><%=c.overview %></p>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="character-selection" id="character-selection-2"></div>
+        </div>
+        <br>
+      </div>
         </div>
       </div>
     </div>

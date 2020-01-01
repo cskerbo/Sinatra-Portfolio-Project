@@ -16,6 +16,7 @@ class BuildController < ApplicationController
   post '/build/new' do
     if logged_in?
       @build = current_user.builds.build(params[:build])
+      if @build.name
       @build.save
       redirect "build/new/#{@build.id}"
     else
