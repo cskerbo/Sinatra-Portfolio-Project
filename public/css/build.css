@@ -507,8 +507,9 @@ input:checked + .slider:before {
     align-items: center;
 }
 
-.character-image img {
-
+.character-portrait {
+    width: 130px;
+    height: 130px;
 }
 
 #survivor {
@@ -524,4 +525,65 @@ input:checked + .slider:before {
 .button-selection {
     display: flex;
     flex-direction: row;
+}
+
+#tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+#tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+#tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltiptext p {
+    padding: 2%;
+}
+
+.tooltiptext h2 {
+    background-color: purple;
+}
+
+.build-character-select {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* HIDE RADIO */
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+    outline: 2px solid #f00;
 }

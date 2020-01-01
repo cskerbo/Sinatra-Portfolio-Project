@@ -9,6 +9,17 @@
         });
     });
 
+    function Clear()
+    {
+        clearRadioGroup("build[character_id]");
+    }
+
+    function clearRadioGroup(GroupName)
+    {
+        var ele = document.getElementsByName(GroupName);
+        for(var i=0;i<ele.length;i++)
+            ele[i].checked = false;
+    }
 </script>
 <form action="/build/new" method="POST">
   <div class="container">
@@ -22,7 +33,7 @@
           <h3>Survivor</h3>
           <img  alt="Survivor Icon" src="images/icon_survivor.png" width="130" height="130" />
           <label class="switch">
-            <input type="checkbox" name=build[build_type] value="survivor">
+            <input type="checkbox" name=build[build_type] value="survivor" onclick="Clear();">
             <span class="slider round"></span>
           </label>
         </div>
@@ -30,34 +41,34 @@
           <h3>Killer</h3>
           <img  alt="Killer Icon" src="images/icon_killer.png" width="130" height="130" />
           <label class="switch">
-            <input type="checkbox" name=build[build_type] value="killer">
+            <input type="checkbox" name=build[build_type] value="killer" onclick="Clear();">
             <span class="slider round"></span>
           </label>
         </div>
       </div><br>
         <button id="submit" type="submit">Continue</button>
+        <input type="button" value="Clear" onclick="Clear();">
       </div>
       <div id="container-characters" class="survivor" style="display: none">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
           <div class="heading">Character Selection</div>
           <div class="fplinks" id="loadout">
-            <div class="build">
+            <div class="build-character-select" >
               <%@characters.each do |c| %>
               <%if c.character_type == "survivor" %>
             <div id="survivor">
-              <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
-                          <div class="character-image">
-                            <img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" />
-                          </div>
-                  <div class="character-description">
-                  <p><%=c.overview %></p>
-                  </div>
+              <div class="character-image" id="tooltip">
+                <label>
+                  <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+                  <img class="character-portrait" src="images/characters/<%=c.name%>.png">
+                </label>
+                <span class="tooltiptext"><h2><%=c.name %></h2><%=c.overview %></span>
+              </div>
             </div>
               <% end %>
               <% end %>
               </div>
             </div>
-            <div class="character-selection" id="character-selection-2"></div>
             </div>
             <br>
           </div>
@@ -65,23 +76,22 @@
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
           <div class="heading">Character Selection</div>
           <div class="fplinks" id="loadout">
-            <div class="build">
+            <div class="build-character-select">
               <%@characters.each do |c| %>
                 <%if c.character_type == "killer" %>
                   <div id="killer">
-                    <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
-                    <div class="character-image">
-                      <img alt="<%= c.name %> Preview Portrait.png" src="images/characters/<%=c.name%>.png" width="190" height="210" />
-                    </div>
-                    <div class="character-description">
-                      <p><%=c.overview %></p>
-                    </div>
+                  <div class="character-image" id="tooltip">
+                    <label>
+                      <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+                      <img class="character-portrait" src="images/characters/<%=c.name%>.png">
+                    </label>
+                    <span class="tooltiptext"><h2><%=c.name %></h2><%=c.overview %></span>
+                  </div>
                   </div>
                 <% end %>
               <% end %>
             </div>
           </div>
-          <div class="character-selection" id="character-selection-2"></div>
         </div>
         <br>
       </div>
