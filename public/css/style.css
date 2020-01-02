@@ -23,8 +23,8 @@ html, body {
 .wrapper {
   flex: 1;
   max-width: 100%;
-  margin-top: 80px;
-  padding: 5px;
+  margin-top: 64px;
+
 }
 
 .content {

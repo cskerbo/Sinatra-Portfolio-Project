@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
         $('input[type="checkbox"]').click(function(){
@@ -25,9 +24,7 @@
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
-        <h1>New Build<span style="color: red"></span></h1>
-
-        <h2>Select a build type:</h2><br>
+        <h1>Select a build type:</h1><br>
         <div class="button-selection">
         <div class="type-buttons">
           <h3>Survivor</h3>
@@ -62,9 +59,12 @@
                   <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
                   <img class="character-portrait" src="images/characters/<%=c.name%>.png">
                 </label>
+
                 <span class="tooltiptext"><h2><%=c.name %></h2><%=c.overview %></span>
               </div>
+              <a><%=c.name %></a>
             </div>
+
               <% end %>
               <% end %>
               </div>

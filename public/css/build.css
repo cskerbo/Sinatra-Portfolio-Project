@@ -18,14 +18,11 @@
     width: 150%;
     height: 80vh;
     overflow-x: hidden;
-    overflow-x: auto;
 }
 
 #container-characters {
     width: 150%;
     height: 80vh;
-    overflow-x: hidden;
-    overflow-x: auto;
 }
 
 .build-type-selection {
@@ -35,7 +32,7 @@
 
 .build-type-container {
     width: 100%;
-align-self: center;
+    align-self: center;
 }
 
 
@@ -49,7 +46,7 @@ align-self: center;
     height: 500px;
     padding-left: 10px;
     color: white;
-
+    z-index: 0;
     height: 80vh;
 }
 
@@ -501,25 +498,36 @@ input:checked + .slider:before {
 }
 
 .character-image {
-    width: 25%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .character-portrait {
-    width: 130px;
-    height: 130px;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    align-items: center;
 }
 
 #survivor {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 6px;
+    width: 20%;
+}
+
+#survivor a {
+    align-self: center;
 }
 
 #killer {
     display: flex;
     flex-direction: row;
+    margin: 2%;
 }
 
 .button-selection {
@@ -585,5 +593,12 @@ input:checked + .slider:before {
 
 /* CHECKED STYLES */
 [type=radio]:checked + img {
-    outline: 2px solid #f00;
+    outline: 4px solid #f00;
+    outline-style: outset
+;
+}
+
+.character-info {
+    display: flex;
+    flex-direction: column;
 }
