@@ -33,9 +33,10 @@
 .build-control {
     display: flex;
     flex-direction: column;
-    font-size: 90%;
-    height: 70%;
-    width: 100%;
+    flex-wrap: wrap;
+    min-height: 30%;
+    max-height: 50%;
+    margin-top: 0;
 }
 
 .cs-how {
@@ -47,7 +48,6 @@
     vertical-align: middle;
     justify-content: center;
     width: 100%;
-    margin-right: 2px;
     color: white;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -92,9 +92,7 @@
     margin: 2px;
 }
 
-.cs-how h1 {
-    float: right;
-}
+
 
 .fpbox {
     border: 2px solid #1f1f1f;
@@ -313,7 +311,30 @@ button#submit {
     font-weight: 700;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     transition: all 150ms;
-    margin: 2%;
+    margin: 2px;
+}
+
+input#clear {
+    -webkit-appearance: push-button;
+    border-radius: 5px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border: 0;
+    background: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    padding: 0 28px;
+    background: #b30000;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    transition: all 150ms;
+    margin: 3px;
 }
 
 .dropbtn {
@@ -362,7 +383,7 @@ button#submit {
 
 .perk-container {
     width: 25%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     margin: 2px;
 }
 
@@ -472,9 +493,6 @@ button#submit {
     font-weight:normal;
 }
 
-.cs-how h1 {
-    padding: 5%;
-}
 
 .cs-how h3 {
     padding: 1%;
@@ -490,7 +508,6 @@ button#submit {
 .build-character {
     display: flex;
     justify-content: center;
-
     height: 100%;
     width: 100%;
 }
@@ -635,43 +652,13 @@ input:checked + .slider:before {
 .button-selection {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 #tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
 
-/* Tooltip text */
-#tooltip .tooltiptext {
-    visibility: hidden;
-    width: 500px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-#tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-.tooltiptext p {
-    padding: 2%;
-}
-
-.tooltiptext h2 {
-    background-color: purple;
 }
 
 .build-character-select {
@@ -711,6 +698,11 @@ input:checked + .slider:before {
     width: 100%;
 }
 
+#selected-character  {
+    min-height: 50%;
+    max-height: 50%;
+}
+
 
 .s-character-header {
     display: flex;
@@ -721,7 +713,7 @@ input:checked + .slider:before {
 
 .s-character-body {
     width: 90%;
-    margin-top: 5%;
+    margin-top: 2%;
     text-align: center;
 }
 
@@ -747,4 +739,15 @@ input:checked + .slider:before {
 .s-character-header h2 {
     align-self: center;
     height: 50%;
+}
+
+.instructions  {
+    min-height: 50%;
+    max-height: 50%;
+    text-align: center;
+}
+
+.instructions h2 {
+    margin: 5%;
+    margin-top: 10%;
 }
