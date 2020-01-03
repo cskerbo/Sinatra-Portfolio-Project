@@ -70,16 +70,20 @@
     <div class="character-content">
       <div class="cs-how">
         <div class="build-control">
-        <h2>Enter a name for your build:</h2><br>
+          <h1>Finish creating your custom loadout.</h1>
+        <h2>Enter a name for this build:</h2><br>
         <input type="text" name="build[name]" id="build-name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-        <h2>Select up to 4 perks.</h2><br>
-        <p>Current perks selected:</p><br>
-        <output>0 are checked<br><br><ul><li>No Values</li></ul></output><br>
+
+          <h3 id="character"><u>Build Type</u>: <%=@build.build_type.capitalize%></h3>
+          <h3 id="character"><u>Owner</u>: <%=@user.username%></h3>
+          <h3 id="character"><u>Date Created</u>: Placeholder</h3>
+          <h3 id="character"><u>Last Edited</u>: Never</h3>
+
         <button id="submit" type="submit">Save Build</button>
         </div><br><br>
 
         <div class="new-build-character">
-          <div id="character"><h2 id="character"><u><%=@build.build_type.capitalize %></u></h2></div><br><br>
+
           <img alt="character-image" src="/images/characters/<%=@character.name%>.png">
           <p><%=@character.name%></p>
         </div>

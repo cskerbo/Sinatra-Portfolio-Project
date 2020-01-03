@@ -25,6 +25,7 @@ class BuildController < ApplicationController
 
   get '/build/new/:id' do
     if logged_in?
+      @user = current_user
       @build = Build.find(params[:id])
       @character = Character.find(@build.character_id)
       @perks = Perk.all
