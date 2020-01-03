@@ -60,7 +60,8 @@
         <div id="selected-character">
         <%@characters.each do |c| %>
         <div class="<%=c.id %>" style="display: none">
-          <div class="s-character-header">
+          <img src="/images/divider.png" style="width: 700px; height: 50px; z-index: 0;">
+          <div class="s-character-header" style="z-index: 1;">
             <img class="character-portrait" src="images/characters/<%=c.name%>.png" style="width: 130px; height: 130px;">
             <h2><%=c.name %></h2>
           </div>

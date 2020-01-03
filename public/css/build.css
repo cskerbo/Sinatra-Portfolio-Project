@@ -711,10 +711,6 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-#selected-character {
-
-    margin-top: 5%;
-}
 
 .s-character-header {
     display: flex;
