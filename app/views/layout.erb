@@ -7,9 +7,18 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/responsive.css">
   <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+  <script>
+      function initPage() {
+          // Loop through each perk slot setting the description to the selected perk
+          // Initially, this will just load the default "none" descriptions
+          for (let index = 1; index <= 4; index++) {
+              handlePerkChange(index);
+          }
+      }
+  </script>
   <title>DBD Character Builder</title>
 </head>
-  <body>
+  <body onload="initPage();">
   <div class="header">
     <a href="/" class="logo"><img src="/images/logo.jpg" style="width:75px; height:40px"></a>
     <div class="header-right">
@@ -35,7 +44,7 @@
     <%= yield %>
 
   </div>
-
+  </body>
   <div class="footer">
     <div class="footer-top">
       <a href="#">Terms of Use</a>
@@ -47,5 +56,4 @@
         This site is not affiliated with the game publisher.</p>
   </div>
 </div>
-</body>
 </html>

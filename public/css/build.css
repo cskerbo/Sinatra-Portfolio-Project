@@ -1,7 +1,3 @@
-* {
-    margin: 0;
-}
-
 .clear {
     clear: both;
 }
@@ -9,7 +5,9 @@
 .character-content {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
     width: 100%;
+    height: 100%;
 }
 
 .container-characters {
@@ -42,16 +40,56 @@
 
 .cs-how {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-content: center;
     align-items: center;
+    vertical-align: middle;
+    justify-content: center;
     width: 100%;
-    padding-left: 20px;
     margin-right: 2px;
     color: white;
     margin-top: 12px;
     margin-bottom: 12px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.survivor{
+     width: 180%;
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+     margin-top: 12px;
+     margin-bottom: 12px;
+     margin-left: 3px;
+ }
+
+#survivor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 2px;
+}
+
+.killer {
+    width: 180%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 3px;
+}
+
+#killer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 2px;
 }
 
 .cs-how h1 {
@@ -246,11 +284,11 @@ input[type='checkbox'] {
 }
 
 input#build-name {
-    padding: 12px 20px;
-    margin: 8px 0;
+    margin-bottom: 30px;
     display: inline-block;
+    align-self: center;
     border: 0;
-    width: 50%;
+    width: 75%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0);
 }
@@ -569,36 +607,29 @@ input:checked + .slider:before {
 }
 
 .character-image {
-
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
+
+.character-image label img {
+    height: 120px;
+    width: 120px;
+}
+
+.character-image p {
+    color: #f1f1f1;
+    align-self: center;
+}
+
 
 .character-portrait {
     width: 60px;
     height: 60px;
     align-self: center;
     align-items: center;
-}
-
-#survivor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 6px;
-    width: 20%;
-}
-
-#survivor a {
-    align-self: center;
-}
-
-#killer {
-    display: flex;
-    flex-direction: row;
-    margin: 2%;
 }
 
 .button-selection {
@@ -678,4 +709,46 @@ input:checked + .slider:before {
     display: block;
     float: left;
     width: 100%;
+}
+
+#selected-character {
+    height: 50%;
+    margin-top: 5%;
+}
+
+.s-character-header {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    vertical-align: middle;
+}
+
+.s-character-body {
+    width: 90%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.s-character-body a img {
+    vertical-align: middle;
+    justify-self: center;
+}
+
+.s-character-body p {
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 90%;
+    color: #aaa9a9;
+}
+
+.s-character-body a {
+    pointer-events: none;
+    color: white;
+    text-decoration: none;
+}
+
+.s-character-header h2 {
+    align-self: center;
+    height: 50%;
 }

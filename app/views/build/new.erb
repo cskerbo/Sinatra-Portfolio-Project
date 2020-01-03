@@ -56,15 +56,8 @@
     // Function called once the browser has finished loading and parsing the HTML document
     // Running the same code inline (before the page is finished loading) would result in null references,
     // because JavaScript can't reference something the browser hasn't parsed from the document yet
-    function initPage() {
-        // Loop through each perk slot setting the description to the selected perk
-        // Initially, this will just load the default "none" descriptions
-        for (let index = 1; index <= 4; index++) {
-            handlePerkChange(index);
-        }
-    }
+
 </script>
-<body onload="initPage();">
 <form name="build" onsubmit="return validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
     <div class="character-content">
@@ -73,17 +66,14 @@
           <h1>Finish creating your custom loadout.</h1>
         <h2>Enter a name for this build:</h2><br>
         <input type="text" name="build[name]" id="build-name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-
-          <h3 id="character"><u>Build Type</u>: <%=@build.build_type.capitalize%></h3>
+          <br><h3 id="character"><u>Build Type</u>: <%=@build.build_type.capitalize%></h3>
           <h3 id="character"><u>Owner</u>: <%=@user.username%></h3>
           <h3 id="character"><u>Date Created</u>: Placeholder</h3>
           <h3 id="character"><u>Last Edited</u>: Never</h3>
-
-        <button id="submit" type="submit">Save Build</button>
-        </div><br><br>
-
+          <button id="submit" type="submit">Save Build</button>
+        </div>
         <div class="new-build-character">
-
+          <h3>Selected Character:</h3>
           <img alt="character-image" src="/images/characters/<%=@character.name%>.png">
           <p><%=@character.name%></p>
         </div>
@@ -136,4 +126,3 @@
             <br>
     </div>
 </form>
-</body>

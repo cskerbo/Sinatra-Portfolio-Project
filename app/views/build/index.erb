@@ -8,6 +8,17 @@
         });
     });
 
+    $(document).ready(function(){
+
+        $('input[type="radio"]').click(function(){
+            $('#selected-character').children().each(function() {
+                $(this).hide();
+            });
+            var inputValue = $(this).attr("value");
+            $("." + inputValue).toggle();
+        });
+    });
+
     function Clear()
     {
         clearRadioGroup("build[character_id]");
@@ -18,10 +29,10 @@
         var ele = document.getElementsByName(GroupName);
         for(var i=0;i<ele.length;i++)
             ele[i].checked = false;
+
+
     }
 </script>
-<form action="/build/new" method="POST">
-  <div class="container">
     <div class="character-content">
       <div class="cs-how">
         <h2>Select a build type:</h2><br>
@@ -29,6 +40,7 @@
         <div class="type-buttons">
           <h3>Survivor</h3>
           <img  alt="Survivor Icon" src="images/icon_survivor.png" width="130" height="130" />
+          <form action="/build/new" method="POST">
           <label class="switch">
             <input type="checkbox" name=build[build_type] value="survivor" onclick="Clear();">
             <span class="slider round"></span>
@@ -45,12 +57,22 @@
       </div><br>
         <button id="submit" type="submit">Continue</button>
         <input type="button" value="Clear" onclick="Clear();">
+        <div id="selected-character">
+
+        <%@characters.each do |c| %>
+        <div class="<%=c.id %>" style="display: none">
+          <div class="s-character-header">
+            <img class="character-portrait" src="images/characters/<%=c.name%>.png" style="width: 130px; height: 130px;">
+            <h2><%=c.name %></h2>
+          </div>
+          <div class="s-character-body">
+          <%=c.overview %>
+          </div>
+        </div>
+          <%end %>
+        </div>
       </div>
-      <div id="container-characters" class="survivor" style="display: none">
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading">Character Selection</div>
-          <div class="fplinks" id="loadout">
-            <div class="build-character-select" >
+            <div class="survivor" style="display: none">
               <%@characters.each do |c| %>
               <%if c.character_type == "survivor" %>
             <div id="survivor">
@@ -59,43 +81,31 @@
                   <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
                   <img class="character-portrait" src="images/characters/<%=c.name%>.png">
                 </label>
-
+                <p><%=c.name %></p>
                 <span class="tooltiptext"><h2><%=c.name %></h2><%=c.overview %></span>
               </div>
-              <a><%=c.name %></a>
             </div>
               <% end %>
               <% end %>
               </div>
-            </div>
-            </div>
-            <br>
-          </div>
-      <div id="container-characters" class="killer" style="display: none">
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading">Character Selection</div>
-          <div class="fplinks" id="loadout">
-            <div class="build-character-select">
+            <div class="killer" style="display: none">
               <%@characters.each do |c| %>
                 <%if c.character_type == "killer" %>
                   <div id="killer">
                   <div class="character-image" id="tooltip">
                     <label>
-                      <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+                      <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%=c.id%>">
                       <img class="character-portrait" src="images/characters/<%=c.name%>.png">
                     </label>
                     <span class="tooltiptext"><h2><%=c.name %></h2><%=c.overview %></span>
+                    <p><%=c.name %></p>
                   </div>
+
                   </div>
                 <% end %>
               <% end %>
             </div>
-          </div>
         </div>
-        <br>
-      </div>
-        </div>
-      </div>
     </div>
   </div>
 </form>
