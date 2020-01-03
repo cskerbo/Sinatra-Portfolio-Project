@@ -36,7 +36,7 @@
         <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
         <%image_path_long = image_match * " "%>
         <%image_path_short = image_path_long.split('c/')[-1]%>
-        "<%=p.id %>": "<div class='perk-icon'><img alt=\"Empty\" src=\"/<%=image_path_short%>\"  width=\"190\" height=\"210\" /><%=p.name %></div><div class='perk-description'><%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %></div>",
+        "<%=p.id %>": "<div class='perk-icon'><img alt=\"Empty\" src=\"/<%=image_path_short%>\"  width=\"190\" height=\"210\" /><h3><%=p.name %></h3></div><div class='perk-description'><%=p.raw_html.gsub(/\R+/, ' ').gsub('"', '\\\\"') %></div>",
         <%end %>
     };
 
@@ -88,7 +88,7 @@
                   <div class="perk-selection">
                     <h3>Slot <%=counter %></h3>
                     <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option label="Select a Perk" value=""></option>
+                      <option value="">Select a Perk</option>
                       <%@perks.each do |m| %>
                         <% if m.role == @build.build_type%>
                           <%if m.name == p.name %>
@@ -113,7 +113,7 @@
                     <div class="perk-selection">
                       <h4>Slot <%=counter %></h4>
                       <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                        <option label="Select a Perk" selected="selected"></option>
+                        <option selected="selected" value="">Select a Perk</option>
                         <%@perks.each do |m| %>
                           <% if m.role == @build.build_type%>
                             <option value="<%=m.id %>"><%=m.name %></option>
