@@ -712,7 +712,7 @@ input:checked + .slider:before {
 }
 
 #selected-character {
-    height: 50%;
+
     margin-top: 5%;
 }
 
