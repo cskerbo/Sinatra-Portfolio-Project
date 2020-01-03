@@ -67,7 +67,6 @@
 <body onload="initPage();">
 <form name="build" onsubmit="return validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
-  <div class="container">
     <div class="character-content">
       <div class="cs-how">
         <div class="build-control">
@@ -77,21 +76,14 @@
         <p>Current perks selected:</p><br>
         <output>0 are checked<br><br><ul><li>No Values</li></ul></output><br>
         <button id="submit" type="submit">Save Build</button>
-        </div>
+        </div><br><br>
+
         <div class="new-build-character">
-        <div class="new-build-character-image">
-          <img src="" alt="Killer Image">
+          <div id="character"><h2 id="character"><u><%=@build.build_type.capitalize %></u></h2></div><br><br>
+          <img alt="character-image" src="/images/characters/<%=@character.name%>.png">
+          <p><%=@character.name%></p>
         </div>
-          <div class="new-build-character-info">
-          <h2><%=@character.name%></h2>
-            <%=@character.overview %>
-        </div>
-        </div>
-        </div>
-      <div class="container-characters">
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading">Current Build</div>
-          <div class="fplinks" id="loadout">
+      </div>
             <div class="build">
               <%counter = 1 %>
               <% @build.perks.each do |p|%>
@@ -138,10 +130,6 @@
               <%end%>
             </div>
             <br>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </form>
 </body>

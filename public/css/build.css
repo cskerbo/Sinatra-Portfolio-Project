@@ -9,14 +9,12 @@
 .character-content {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
 }
 
 .container-characters {
     width: 150%;
-    height: 80vh;
     overflow-x: hidden;
 }
 
@@ -36,8 +34,11 @@
 }
 
 .build-control {
-    margin-bottom: 5%;
-    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    font-size: 90%;
+    height: 50%;
+    width: 100%;
 }
 
 .cs-how {
@@ -46,9 +47,10 @@
     align-content: center;
     align-items: center;
     width: 100%;
-    padding-left: 10px;
+    padding-left: 20px;
     color: white;
-    height: 80vh;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .cs-how h1 {
@@ -56,7 +58,6 @@
 }
 
 .fpbox {
-    height: 100%;
     border: 2px solid #1f1f1f;
     box-shadow: 0 0 5px 0 #000000;
     color: #aaa9a9;
@@ -96,6 +97,10 @@
     padding: 5px;
     text-align: center;
     background: rgba(166, 166, 166, 0.1);
+}
+
+.perk-selection h4 {
+    color: #FFFFFF;
 }
 
 .perk-image {
@@ -222,6 +227,14 @@
 .build {
     display: flex;
     flex-direction: row;
+    height: 80vh;
+    width: 190%;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #aaa9a9;
+    border-radius: 5px;
 }
 
 .link a {
@@ -311,9 +324,8 @@ button#submit {
 }
 
 .perk-container {
-    min-height: 350px;
-    max-height: 350px;
     width: 25%;
+    border: 1px inset #aaaaaa;
 }
 
 
@@ -338,6 +350,7 @@ button#submit {
 
 .perk-icon {
     width: 100%;
+    height: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,16 +360,19 @@ button#submit {
 
 .perk-description {
     width: 100%;
-    height: 100%;
+    height: 56vh;
     text-align: center;
     margin-top: 5%;
-    padding-left: 4px;
-    padding-right: 4px;
+
+
 }
 
 .perk-description p {
-    padding: 10px;
-    font-size: 85%;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 90%;
+    color: #aaa9a9;
 }
 
 .perk-description a {
@@ -443,27 +459,27 @@ button#submit {
 
 .build-character p{
 align-self: center;
-
 }
 
 .new-build-character {
     display: flex;
-    flex-direction: row;
-    height: 100%;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-right: 4px;
 }
 
-.new-build-character-image {
-    width: 30%;
+.new-build-character p{
+    align-self: center;
+    padding-top: 5px;
 }
 
-.new-build-character-info {
-    width: 70%;
-    text-align: center;
-}
-
-.new-build-character-info p {
-    padding: 5px;
-    font-size: 90%;
+.new-build-character img {
+    width: 170px;
+    height: 170px;
+    align-self: center;
 }
 
 .new-build-character-info h2 {
@@ -655,4 +671,10 @@ input:checked + .slider:before {
 .character-info {
     display: flex;
     flex-direction: column;
+}
+
+#character {
+    display: block;
+    float: left;
+    width: 100%;
 }

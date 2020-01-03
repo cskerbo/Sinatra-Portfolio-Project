@@ -21,21 +21,8 @@ html, body {
 }
 
 .wrapper {
-  flex: 1;
   max-width: 100%;
   margin-top: 64px;
-}
-
-.content {
-  height: 100%;
-  max-width: 100%;
-  min-height: 20%;
-  display: flex 0;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin: auto 0;
-
 }
 
 .container {
