@@ -26,7 +26,7 @@ class BuildController < ApplicationController
   get '/build/new/:id' do
     if logged_in?
       @build = Build.find(params[:id])
-      @characters = Character.all
+      @character = Character.find(@build.character_id)
       @perks = Perk.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
       erb :'build/new'

@@ -30,7 +30,7 @@
     // Create a global dictionary, mapping perk keys to perk descriptions
     // Each perk needs some kind of unique identifier -- could be a number you generate, or just the perk name
     var perkDescriptions = {
-        '' : "<div class='perk-icon'><img alt=\"Empty\" src=\"/images/icon_perks.png\"  width=\"190\" height=\"210\" /></div><div class='perk-description'>No Perk Selected</div>",
+        '' : "<div class='perk-icon'><img alt=\"Empty\" src=\"/images/icon_perks.png\"  width=\"190\" height=\"210\" /></div><div class='perk-description'><p>No Perk Selected<p></div>",
         <%@perks.each do |p| %>
         <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
         <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -70,13 +70,24 @@
   <div class="container">
     <div class="character-content">
       <div class="cs-how">
+        <div class="build-control">
         <h2>Enter a name for your build:</h2><br>
         <input type="text" name="build[name]" id="build-name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
         <h2>Select up to 4 perks.</h2><br>
         <p>Current perks selected:</p><br>
         <output>0 are checked<br><br><ul><li>No Values</li></ul></output><br>
         <button id="submit" type="submit">Save Build</button>
-      </div>
+        </div>
+        <div class="new-build-character">
+        <div class="new-build-character-image">
+          <img src="" alt="Killer Image">
+        </div>
+          <div class="new-build-character-info">
+          <h2><%=@character.name%></h2>
+            <%=@character.overview %>
+        </div>
+        </div>
+        </div>
       <div class="container-characters">
         <div class="fpbox" id="fpsurvivors" style="text-align: center;">
           <div class="heading">Current Build</div>
