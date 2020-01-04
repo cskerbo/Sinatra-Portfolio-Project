@@ -12,7 +12,11 @@
         </div>
         </form>
       </div>
-          <div class="build">
+      <div class="build-display-wrapper">
+          <div class="build-character">
+            <%=@build.character_id %>
+          </div>
+          <div class="build-display">
             <% @build.perks.each do |p|%>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
               <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -45,6 +49,7 @@
               <%end%>
             <%end%>
           </div>
+      </div>
   </div>
 
 

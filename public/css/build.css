@@ -505,10 +505,7 @@ input#clear {
 }
 
 .build-character {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+
 }
 
 .build-character p{
@@ -659,6 +656,25 @@ input:checked + .slider:before {
     display: inline-block;
 
 }
+
+.build-display-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.build-display {
+    display: flex;
+    flex-direction: row;
+    width: 130%;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
 
 .build-character-select {
     display: flex;
