@@ -41,9 +41,9 @@
 <body onload="initPage();">
 <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
   <input type="hidden" name="_method"  id="hidden" value="patch">
-  <div class="container">
     <div class="character-content">
       <div class="cs-how">
+        <div class="build-control">
         <h1>Editing build: <span style="color: red"><%=@build.name %></span></h1>
         <h3>Build Type: <%=@build.build_type.capitalize %></h3>
         <h3>Date Created: Placeholder</h3>
@@ -59,10 +59,7 @@
           <p>Placeholder for character info</p>
         </div>
       </div>
-      <div class="container-characters">
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading">Current Build</div>
-          <div class="fplinks" id="loadout">
+      </div>
             <div class="build">
               <%counter = 1 %>
             <% @build.perks.each do |p|%>
@@ -95,7 +92,7 @@
                   <div class="perk-selection">
                     <h4>Slot <%=counter %></h4>
                     <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option value="none" selected="selected">Select a perk</option>
+                      <option value="" selected="selected">Select a perk</option>
                       <%@perks.each do |m| %>
                         <% if m.role == @build.build_type%>
                             <option value="<%=m.id %>"><%=m.name %></option>
@@ -109,10 +106,6 @@
               <%end%>
                 </div>
                 <br>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
 </form>
 </body>
