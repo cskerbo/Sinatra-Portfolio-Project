@@ -1,15 +1,17 @@
 <%require 'pry' %>
 
 <link rel="stylesheet" type="text/css" href="/css/build.css">
-<form action="/build" method="POST">
+
     <div class="character-content">
       <div class="cs-how">
-        <br><br>
+        <form action="/build" method="POST">
+        <div class="button-selection">
         <button id="submit" type="submit" formmethod="get" formaction="/build/<%=@build.id %>/edit">Edit Build</button><br>
         <button id="submit" type="submit" formmethod="get" formaction="/user_builds">My Builds</button><br>
         <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All User Builds</button>
+        </div>
+        </form>
       </div>
-      <div class="container-characters">
           <div class="build">
             <% @build.perks.each do |p|%>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
@@ -26,10 +28,25 @@
                 <div class='perk-description'><%=p.raw_html%></div>
               </div>
               <%end %>
+            <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
+            <%if @build.perks.count < 4 %>
+              <% counter = @build.perks.count%>
+              <%while counter < 4 %>
+                <%counter += 1 %>
+                <div id="perk-container" class="perk-container">
+                  <div class="perk-selection">
+                    <div class='perk-icon'>
+                      <img alt="Empty" src="/images/icon_perks.png"  width="190" height="210" />
+                      <h3>Empty</h3>
+                    </div>
+                  </div>
+                  <div class='perk-description'><p>No Perk Selected</p></div>
+                </div>
+              <%end%>
+            <%end%>
           </div>
-    </div>
   </div>
-</form>
+
 
 <%@perks.each do |p|%>
 
