@@ -3,26 +3,45 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
     <div class="character-content">
       <div class="cs-how">
+        <div class="welcome">
         <br>
         <h1>Welcome, <%=@user.username %>!</h1><br><br>
         <form>
-        Create a new build:<input class="login-button" type="submit" formaction="/build" formmethod="get" value="Create">
-        View all user builds: <input class="login-button" type="submit" formmethod="get" formaction="/all_builds" value="All Builds">
+          <div class="buttons">
+        Create a new build:<button class="login-button" type="submit" formaction="/build" formmethod="get" value="Create">
+        View all user builds: <button class="login-button" type="submit" formmethod="get" formaction="/all_builds" value="All Builds">
         </form>
-        <br><br><br><br>
-        <h2>Account Information</h2><br>
+        </div>
+        </div>
+        <div class="account-information">
+        <h2><u>Account Information</u></h2><br>
         <p>Username: <%=@user.username%></p>
         <p>Email: <%=@user.email %></p>
         <p>Build Count: <%=@builds.count %></p>
+        </div>
       </div>
       <div class="user-build-list">
+        <%if @builds.count == 0 %>
+            <div class="no-build-notice">
+            <h1>You haven't created any builds yet.</h1>
+            <h1>The Entity is displeased.</h1>
+              <a href="/build" style="margin: 20px; color: red"><h2>Get Started</h2></a>
+            </div>
+          <%end %>
         <% @builds.each do |p|%>
           <%character = Character.find(p.character_id) %>
           <div class="user-build">
             <div class="user-build-top">
             <div class="user-build-info">
             <h2><u>Build Name</u>: <%=p.name %></h2>
-            <h3><u>Build Type</u>: <%=p.build_type.capitalize %></h3>
+            <h3><u>Build Type</u>: <%=p.build_type.capitalize %></h3><br>
+              <form>
+              <div class="edit-buttons">
+                <button id="edit-button" formaction="/build/<%=p.id %>">View</button>
+                <button id="edit-button" formaction="/build/<%=p.id %>/edit" formmethod="get">Edit</button>
+                <button id="edit-button" formaction="/build/<%=p.id %>/delete" formmethod="get">Delete</button>
+              </div>
+              </form>
             </div>
             <div class="user-build-character">
             <img style="width: 100px; height: 100px; align-self: center" src="/images/characters/<%=character.name %>.png">

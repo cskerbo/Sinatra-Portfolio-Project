@@ -33,16 +33,14 @@
 .build-control {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    height: 100%;
+    width: 100%;
 }
 
 .cs-how {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    align-content: center;
-    align-items: center;
-    vertical-align: middle;
-    justify-content: center;
     width: 100%;
     color: white;
     border-radius: 10px;
@@ -269,7 +267,7 @@
 .build {
     display: flex;
     flex-direction: row;
-    width: 190%;
+    width: 220%;
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -312,7 +310,21 @@
 .perk {
     width: 25%;
     background: rgba(166, 166, 166, 0.1);
-    margin: 2px;
+    margin: 3px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.no-build-notice {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
 }
 
 .user-build-info {
@@ -368,6 +380,29 @@ button#submit {
     padding: 0 28px;
     background: #b30000;
     font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    transition: all 150ms;
+    margin: 2px;
+}
+
+button#edit-button {
+    -webkit-appearance: push-button;
+    border-radius: 5px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    border: 0;
+    background: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    padding: 0 28px;
+    background: #2980B9;
+    font-size: 10px;
     font-weight: 700;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     transition: all 150ms;
@@ -562,6 +597,10 @@ input#clear {
     justify-content: center;
 }
 
+.edit-buttons {
+    margin-top: 10px;
+}
+
 .build-character {
 
 }
@@ -599,8 +638,8 @@ align-self: center;
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 24px;
     align-self: center;
 }
 
@@ -627,8 +666,8 @@ align-self: center;
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 16px;
+    width: 18px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -652,7 +691,7 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+    border-radius: 10px;
 }
 
 .slider.round:before {
@@ -804,10 +843,16 @@ input:checked + .slider:before {
 }
 
 #selected-character  {
-    min-height: 50%;
-    max-height: 50%;
+    min-height: 70%;
+    align-content: center;
+    text-align: center;
 }
 
+.selected-character  {
+    min-height: 30%;
+    align-content: center;
+    text-align: center;
+}
 
 .s-character-header {
     display: flex;
@@ -817,7 +862,7 @@ input:checked + .slider:before {
 }
 
 .s-character-body {
-    width: 90%;
+    width: 100%;
     text-align: center;
 }
 
@@ -840,7 +885,7 @@ input:checked + .slider:before {
     text-decoration: none;
 }
 
-.s-character-header h2 {
+.s-character-header h3 {
     align-self: center;
     height: 50%;
 }

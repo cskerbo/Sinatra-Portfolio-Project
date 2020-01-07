@@ -38,11 +38,11 @@
     <div class="character-content">
       <div class="cs-how">
         <div class="build-control">
-        <h1>Select a build type:</h1><br>
+        <h2>Select a build type:</h2><br>
         <div class="button-selection">
         <div class="type-buttons">
           <h3>Survivor</h3>
-          <img  alt="Survivor Icon" src="images/icon_survivor.png" width="130" height="130" />
+          <img  alt="Survivor Icon" src="images/icon_survivor.png" width="100" height="100" />
           <form action="/build/new" method="POST">
           <label class="switch">
             <input type="checkbox" name=build[build_type] value="survivor" onclick="Clear();">
@@ -51,17 +51,14 @@
         </div>
             <div class="type-buttons">
           <h3>Killer</h3>
-          <img  alt="Killer Icon" src="images/icon_killer.png" width="130" height="130" />
+          <img  alt="Killer Icon" src="images/icon_killer.png" width="100" height="100" />
           <label class="switch">
             <input type="checkbox" name=build[build_type] value="killer" onclick="Clear();">
             <span class="slider round"></span>
           </label>
         </div>
       </div><br>
-        <div class="buttons">
-        <button id="submit" type="submit">Continue</button>
-        <input id="clear" value="Clear" onclick="Clear();">
-        </div>
+
         </div>
         <div class="instructions" id="instructions" style="display: none">
           <h2>Select a character for your build. This is <i>required</i> to continue.</h2>
@@ -70,13 +67,16 @@
         <div id="selected-character">
         <%@characters.each do |c| %>
         <div class="<%=c.id %>" style="display: none">
-          <img src="/images/divider.png" style="width: 700px; height: 50px; z-index: 0;">
           <div class="s-character-header" style="z-index: 1;">
-            <img class="character-portrait" src="images/characters/<%=c.name%>.png" style="width: 130px; height: 130px;">
-            <h2><%=c.name %></h2>
+            <img class="character-portrait" src="images/characters/<%=c.name%>.png" style="width: 100px; height: 100px;">
+            <h3><%=c.name %></h3>
           </div>
           <div class="s-character-body">
           <%=c.overview %>
+          </div>
+          <div class="buttons">
+            <button id="submit" type="submit">Continue</button>
+            <input id="clear" value="Clear" onclick="Clear();">
           </div>
         </div>
           <%end %>

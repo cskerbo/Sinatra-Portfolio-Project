@@ -60,7 +60,7 @@
             <div id="new-character">
               <p>Replace with(optional):</p>
               <select name="build[character_id]">
-                <option value="" selected>No Change</option>
+                <option value="<%=@character.id %>" selected>No Change</option>
               <%@characters.each do |c| %>
                 <%if c.character_type == @build.build_type %>
                 <option value="<%=c.id %>"><%=c.name %></option>
@@ -70,7 +70,6 @@
             </div>
           </div>
           <div class="buttons">
-
         <button id="submit" type="submit">Save</button>
         <button id="submit" formaction="/build/<%=@build.id %>/delete" formmethod="get">Delete</button>
         <button id="submit" formaction="/user_builds" formmethod="get">Cancel</button>

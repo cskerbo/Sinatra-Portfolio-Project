@@ -76,7 +76,7 @@
         </div>
         <div class="selected-character">
           <h3>Selected Character:</h3>
-          <img alt="character-image" src="/images/characters/<%=@character.name%>.png">
+          <img alt="character-image" style="width:130px; height: 130px;" src="/images/characters/<%=@character.name%>.png">
           <p><%=@character.name%></p>
         </div>
       </div>
@@ -85,7 +85,6 @@
               <% @build.perks.each do |p|%>
                 <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
                   <div class="perk-selection">
-                    <h3>Slot <%=counter %></h3>
                     <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
                       <option value="">Select a Perk</option>
                       <%@perks.each do |m| %>
