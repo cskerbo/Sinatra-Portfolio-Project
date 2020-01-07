@@ -444,6 +444,7 @@ input#clear {
 .perk-container {
     width: 25%;
     background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
     margin: 2px;
 }
 
