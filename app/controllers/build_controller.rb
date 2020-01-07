@@ -53,7 +53,7 @@ class BuildController < ApplicationController
       @perks = []
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @build = Build.find(params[:id])
-      @user = User.find(@build.user_id)
+      @user = current_user
       @character = Character.find(@build.character_id)
       @build.perk_ids.each do |p|
       perk = Perk.find(p)
@@ -97,6 +97,7 @@ class BuildController < ApplicationController
 
   get '/all_builds' do
     if logged_in?
+      @user = current_user
       @builds = Build.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @users = User.all
@@ -109,6 +110,8 @@ class BuildController < ApplicationController
   get '/build/:id/delete' do
     if logged_in?
       @build = Build.find_by_id(params[:id])
+      @character = Character.find(@build.character_id)
+      @user = current_user
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @perks = Perk.all
       erb :'build/delete'
@@ -119,11 +122,12 @@ class BuildController < ApplicationController
 
   delete '/build/:id/delete' do
     if logged_in?
+      @user = current_user
       @build = Build.find_by_id(params[:id])
-      if @build.user == current_user
+      if @build.user_id == @user.id
         @build.delete
       end
-      redirect to 'user_builds'
+      redirect to '/user_builds'
     else
       redirect to '/login'
     end

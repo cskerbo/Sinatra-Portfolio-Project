@@ -12,7 +12,9 @@
           <p><%=@character.name%></p><br><br><br>
           <form>
           <div class="button-selection">
+            <%if @user.id == @build.user_id %>
               <button id="submit" type="submit" formmethod="get" formaction="/build/<%=@build.id %>/edit">Edit Build</button><br>
+            <%end %>
               <button id="submit" type="submit" formmethod="get" formaction="/user_builds">My Builds</button><br>
               <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All Builds</button>
           </div>

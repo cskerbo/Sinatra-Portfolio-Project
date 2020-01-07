@@ -20,7 +20,9 @@ class UsersController < ApplicationController
         if user.errors.messages[:email]
           flash[:email_error] = "Email #{user.errors.messages[:email][0]}"
         end
-
+        if user.errors.messages[:password]
+          flash[:password_error] = "Password #{user.errors.messages[:password][0]}"
+        end
         redirect '/signup'
       end
     end

@@ -1,16 +1,16 @@
 <%require 'pry' %>
 
 <link rel="stylesheet" type="text/css" href="/css/build.css">
+
     <div class="character-content">
       <div class="cs-how">
         <div class="welcome">
         <br>
         <h1>Welcome, <%=@user.username %>!</h1><br><br>
-        <form>
+          <form>
           <div class="buttons">
-        Create a new build:<button class="login-button" type="submit" formaction="/build" formmethod="get" value="Create">
-        View all user builds: <button class="login-button" type="submit" formmethod="get" formaction="/all_builds" value="All Builds">
-        </form>
+            <button id="submit" formaction="/build" formmethod="get">Create</button>
+            <button id="submit" formmethod="get" formaction="/all_builds">All Builds</button>
         </div>
         </div>
         <div class="account-information">
@@ -18,6 +18,9 @@
         <p>Username: <%=@user.username%></p>
         <p>Email: <%=@user.email %></p>
         <p>Build Count: <%=@builds.count %></p>
+        </div>
+        <div class="twitter">
+          <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/DeadByBHVR?ref_src=twsrc%5Etfw">Tweets by DeadByBHVR</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
       <div class="user-build-list">
@@ -66,3 +69,4 @@
       <%end %>
       </div>
     </div>
+</form>
