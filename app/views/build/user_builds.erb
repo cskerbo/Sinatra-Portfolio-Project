@@ -1,79 +1,49 @@
 <%require 'pry' %>
 
 <link rel="stylesheet" type="text/css" href="/css/build.css">
-<form>
-  <div class="container">
     <div class="character-content">
       <div class="cs-how">
         <br>
         <h1>Welcome, <%=@user.username %>!</h1><br><br>
+        <form>
         Create a new build:<input class="login-button" type="submit" formaction="/build" formmethod="get" value="Create">
         View all user builds: <input class="login-button" type="submit" formmethod="get" formaction="/all_builds" value="All Builds">
+        </form>
         <br><br><br><br>
         <h2>Account Information</h2><br>
         <p>Username: <%=@user.username%></p>
         <p>Email: <%=@user.email %></p>
         <p>Build Count: <%=@builds.count %></p>
       </div>
-      <div class="container-characters">
-        <div class="fpbox" id="fpsurvivors" style="text-align: center;">
-          <div class="heading"><a href="/Survivors" title="Survivors"><%=@user.username.capitalize %>'s Builds</a></div>
-          <div class="fplinks">
-            <%if @builds.count == 0 %>
-              <h2>You currently have no builds.<br><br> The Entity is displeased.</h2><br>
-
-            <%end%>
-          </div>
-            <%@builds.each do |b|%>
-              <%if b.user_id == @user.id%>
-              <h2>Name: <%=b.name %></h2>
-              Type: <%=b.build_type.capitalize %>
-          <div class="fplinks" id="loadout">
-            <div class="build">
-              <%b.perks.each do |p| %>
-              <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
-              <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
-              <%image_path_long = image_match * " "%>
-              <%image_path_short = image_path_long.split('c/')[-1]%>
-              <div class="loadout-display">
-                <div class="perk-top">
-                  <div class="fplink plainlinks image">
-                    <div class="box">
-                      <div class="row">
-                        <div class="cell">
-                          <div class="image">
-                            <a href="/perks/<%=p.slug %>" title="<%= p.name %>"><img alt="<%= p.name %> Preview Portrait.png" src="<%=image_path_short %>" width="190" height="210" /></a>
-                          </div>
-                          <div class="link">
-                            <a href="/perks/<%=p.name %>" title="<%= p.name %>"><%= p.name %></a>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <br><br>
-
-                </div>
-
-
+      <div class="user-build-list">
+        <% @builds.each do |p|%>
+          <%character = Character.find(p.character_id) %>
+          <div class="user-build">
+            <div class="user-build-top">
+            <div class="user-build-info">
+            <h2><u>Build Name</u>: <%=p.name %></h2>
+            <h3><u>Build Type</u>: <%=p.build_type.capitalize %></h3>
+            </div>
+            <div class="user-build-character">
+            <img style="width: 100px; height: 100px; align-self: center" src="/images/characters/<%=character.name %>.png">
+              <h3><%=character.name %></h3>
+            </div>
+            </div>
+            <div class="user-build-perks">
+          <% p.perks.each do |c|%>
+          <%edited_perk_name = c.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
+          <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
+          <%image_path_long = image_match * " "%>
+          <%image_path_short = image_path_long.split('c/')[-1]%>
+                <div class="perk">
+              <div class='perk-icon'>
+                <img alt="Empty" src="/<%=image_path_short%>"  width="190" height="210" />
+                <h3 style="color: #f5e042;"><%=c.name %></h3>
               </div>
-              <%end %>
+                </div>
+        <%end %>
             </div>
-            <div class="perk-bottom">
-              <button formaction="/build/<%=b.id %>/edit" formmethod="get">Edit</button>
-              <button formaction="/build/<%=b.id %>" formmethod="get">More Information</button>
-              <button formaction="/build/<%=b.id %>/delete" formmethod="get">Delete</button>
-            </div>
-                <br>
-            <%end%>
-            <%end%>
           </div>
-
-        </div>
-
+      <%end %>
       </div>
     </div>
-  </div>
-  </div>
-</form>

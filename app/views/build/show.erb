@@ -1,22 +1,25 @@
 <%require 'pry' %>
 
 <link rel="stylesheet" type="text/css" href="/css/build.css">
-
     <div class="character-content">
       <div class="cs-how">
-        <form action="/build" method="POST">
-        <div class="button-selection">
-        <button id="submit" type="submit" formmethod="get" formaction="/build/<%=@build.id %>/edit">Edit Build</button><br>
-        <button id="submit" type="submit" formmethod="get" formaction="/user_builds">My Builds</button><br>
-        <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All User Builds</button>
-        </div>
-        </form>
-      </div>
-      <div class="build-display-wrapper">
-          <div class="build-character">
-            <%=@build.character_id %>
+        <div class="build-information">
+          <h1><u>Build Name</u>: <span style="color: red"><%=@build.name %></span></h1><br>
+        <h3><u>Build Type</u>: <span style="color: red"><%=@build.build_type.capitalize %></span></h3><br>
+          <h3><u>Created by</u>: <span style="color: red"><%=@user.username%></span></h3><br>
+          <h3><u>Character</u>:</h3><br>
+          <img alt="character-image" style="width: 130px; height: 130px;" src="/images/characters/<%=@character.name%>.png">
+          <p><%=@character.name%></p><br><br><br>
+          <form>
+          <div class="button-selection">
+              <button id="submit" type="submit" formmethod="get" formaction="/build/<%=@build.id %>/edit">Edit Build</button><br>
+              <button id="submit" type="submit" formmethod="get" formaction="/user_builds">My Builds</button><br>
+              <button id="submit" type="submit" formmethod="get" formaction="/all_builds">All Builds</button>
           </div>
-          <div class="build-display">
+          </form>
+        </div>
+      </div>
+          <div class="build">
             <% @build.perks.each do |p|%>
               <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
               <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -49,10 +52,4 @@
               <%end%>
             <%end%>
           </div>
-      </div>
   </div>
-
-
-<%@perks.each do |p|%>
-
-<%end%>

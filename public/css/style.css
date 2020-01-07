@@ -25,6 +25,7 @@ html, body {
   height: 100%;
   margin-top: 64px;
   margin-bottom: 64px;
+  overflow: hidden;
 }
 
 .container {

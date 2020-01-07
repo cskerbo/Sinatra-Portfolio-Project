@@ -53,6 +53,8 @@ class BuildController < ApplicationController
       @perks = []
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @build = Build.find(params[:id])
+      @user = User.find(@build.user_id)
+      @character = Character.find(@build.character_id)
       @build.perk_ids.each do |p|
       perk = Perk.find(p)
       @perks << perk
@@ -78,6 +80,9 @@ class BuildController < ApplicationController
   get '/build/:id/edit' do
     if logged_in?
       @build = Build.find_by_id(params[:id])
+      @user = User.find(@build.user_id)
+      @character = Character.find(@build.character_id)
+      @characters = Character.all
       @perks = Perk.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
       if @build.user_id == session[:user_id]
