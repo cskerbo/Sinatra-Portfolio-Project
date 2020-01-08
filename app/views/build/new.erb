@@ -21,8 +21,7 @@
         if (x > 4) {
             alert("You can have a maximum of 4 perks. You have currently selected " + x + ".");
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     };
@@ -30,7 +29,7 @@
     // Create a global dictionary, mapping perk keys to perk descriptions
     // Each perk needs some kind of unique identifier -- could be a number you generate, or just the perk name
     var perkDescriptions = {
-        '' : "<div class='perk-icon'><img alt=\"Empty\" src=\"/images/icon_perks.png\"  width=\"190\" height=\"210\" /></div><div class='perk-description'><p>No Perk Selected<p></div>",
+        '': "<div class='perk-icon'><img alt=\"Empty\" src=\"/images/icon_perks.png\"  width=\"190\" height=\"210\" /></div><div class='perk-description'><p>No Perk Selected<p></div>",
         <%@perks.each do |p| %>
         <%edited_perk_name = p.name.gsub(/\s+/, "").gsub("'", "").gsub("-", "").gsub(":", "").gsub("&", "and").gsub("!", "")%>
         <%image_match = @image_list.select{|s| s.downcase.gsub("-", "").include?(edited_perk_name.downcase)}%>
@@ -60,69 +59,71 @@
 </script>
 
 
-    <div class="character-content">
-      <div class="cs-how">
-        <div class="build-control">
-          <h1>Finish creating your custom loadout.</h1>
-        <h2>Enter a name for this build:</h2><br>
-        <form name="build" onsubmit="return validateForm();" action="/build/<%=@build.id %>" method="POST">
-          <input type="hidden" name="_method"  id="hidden" value="patch">
+<div class="character-content">
+  <div class="cs-how">
+    <div class="build-control">
+      <h1>Finish creating your custom loadout.</h1>
+      <h2>Enter a name for this build:</h2><br>
+      <form name="build" onsubmit="return validateForm();" action="/build/<%= @build.id %>" method="POST">
+        <input type="hidden" name="_method" id="hidden" value="patch">
         <input type="text" name="build[name]" id="build-name" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-          <br><h3 id="character"><u>Build Type</u>: <%=@build.build_type.capitalize%></h3>
-          <h3 id="character"><u>Owner</u>: <%=@user.username%></h3>
-          <h3 id="character"><u>Date Created</u>: Placeholder</h3>
-          <h3 id="character"><u>Last Edited</u>: Never</h3>
-          <button id="submit" type="submit">Save Build</button>
-        </div>
-        <div class="selected-character">
-          <h3>Selected Character:</h3>
-          <img alt="character-image" style="width:130px; height: 130px;" src="/images/characters/<%=@character.name%>.png">
-          <p><%=@character.name%></p>
-        </div>
-      </div>
-            <div class="build">
-              <%counter = 1 %>
-              <% @build.perks.each do |p|%>
-                <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
-                  <div class="perk-selection">
-                    <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option value="">Select a Perk</option>
-                      <%@perks.each do |m| %>
-                        <% if m.role == @build.build_type%>
-                          <%if m.name == p.name %>
-                            <option value="<%=m.id %>" selected="selected"><%=m.name %></option>
-                          <%else%>
-                            <option value="<%=m.id %>"><%=m.name %></option>
-                          <%end %>
-                        <%end %>
-                      <%end %>
-                    </select>
-                  </div>
-                  <div id="perk<%=counter %>-description" class="perk-slot"></div>
-                </div>
-                <%counter += 1 %>
-              <%end%>
-              <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
-              <%if @build.perks.count < 4 %>
-                <% counter = @build.perks.count%>
-                <%while counter < 4 %>
-                  <%counter += 1 %>
-                  <div id="perk<%=counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
-                    <div class="perk-selection">
-                      <h4>Slot <%=counter %></h4>
-                      <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                        <option selected="selected" value="">Select a Perk</option>
-                        <%@perks.each do |m| %>
-                          <% if m.role == @build.build_type%>
-                            <option value="<%=m.id %>"><%=m.name %></option>
-                          <%end %>
-                        <%end %>
-                      </select>
-                    </div>
-                    <div id="perk<%=counter %>-description" class="perk-slot"></div>
-                  </div>
-                <%end%>
-              <%end%>
-            </div>
+        <br>
+        <h3 id="character"><u>Build Type</u>: <%= @build.build_type.capitalize %></h3>
+        <h3 id="character"><u>Owner</u>: <%= @user.username %></h3>
+        <h3 id="character"><u>Date Created</u>: Placeholder</h3>
+        <h3 id="character"><u>Last Edited</u>: Never</h3>
+        <button id="submit" type="submit">Save Build</button>
     </div>
+    <div class="selected-character">
+      <h3>Selected Character:</h3>
+      <img alt="character-image" style="width:130px; height: 130px;" src="/images/characters/<%= @character.name %>.png">
+      <p><%= @character.name %></p>
+    </div>
+  </div>
+  <div class="build">
+    <% counter = 1 %>
+    <% @build.perks.each do |p| %>
+      <div id="perk
+        <% counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+        <div class="perk-selection">
+          <select class="select-css" id="perk<%= counter %>-select-list" name="build[perk_ids][]">
+            <option value="">Select a Perk</option>
+            <% @perks.each do |m| %>
+              <% if m.role == @build.build_type %>
+                <% if m.name == p.name %>
+                  <option value="<%= m.id %>" selected="selected"><%= m.name %></option>
+                <% else %>
+                  <option value="<%= m.id %>"><%= m.name %></option>
+                <% end %>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+        <div id="perk<%= counter %>-description" class="perk-slot"></div>
+      </div>
+      <% counter += 1 %>
+    <% end %>
+    <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
+    <% if @build.perks.count < 4 %>
+      <% counter = @build.perks.count %>
+      <% while counter < 4 %>
+        <% counter += 1 %>
+        <div id="perk<%= counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+          <div class="perk-selection">
+            <h4>Slot <%= counter %></h4>
+            <select class="select-css" id="perk<%= counter %>-select-list" name="build[perk_ids][]">
+              <option selected="selected" value="">Select a Perk</option>
+              <% @perks.each do |m| %>
+                <% if m.role == @build.build_type %>
+                  <option value="<%= m.id %>"><%= m.name %></option>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div id="perk<%= counter %>-description" class="perk-slot"></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 </form>

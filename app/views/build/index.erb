@@ -1,18 +1,18 @@
 <link rel="stylesheet" type="text/css" href="/css/build.css">
 <!--LINK JQUERY-->
 <script>
-    $(document).ready(function(){
-        $('input[type="checkbox"]').click(function(){
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
             $('#instructions').show();
             var inputValue = $(this).attr("value");
             $("." + inputValue).toggle();
         });
     });
 
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $('input[type="radio"]').click(function(){
-            $('#selected-character').children().each(function() {
+        $('input[type="radio"]').click(function () {
+            $('#selected-character').children().each(function () {
                 $(this).hide();
                 $('#instructions').hide();
             });
@@ -21,100 +21,99 @@
         });
     });
 
-    function Clear()
-    {
+    function Clear() {
         clearRadioGroup("build[character_id]");
     }
 
-    function clearRadioGroup(GroupName)
-    {
+    function clearRadioGroup(GroupName) {
         var ele = document.getElementsByName(GroupName);
-        for(var i=0;i<ele.length;i++)
+        for (var i = 0; i < ele.length; i++)
             ele[i].checked = false;
 
 
     }
 </script>
-    <div class="character-content">
-      <div class="cs-how">
-        <div class="build-control">
-        <h2>Select a build type:</h2><br>
-        <div class="button-selection">
+<div class="character-content">
+  <div class="cs-how">
+    <div class="build-control">
+      <h2>Select a build type:</h2><br>
+      <div class="button-selection">
         <div class="type-buttons">
           <h3>Survivor</h3>
-          <img  alt="Survivor Icon" src="images/icon_survivor.png" width="100" height="100" />
+          <img alt="Survivor Icon" src="images/icon_survivor.png" width="100" height="100"/>
           <form action="/build/new" method="POST">
-          <label class="switch">
-            <input type="checkbox" name=build[build_type] value="survivor" onclick="Clear();">
-            <span class="slider round"></span>
-          </label>
+            <label class="switch">
+              <input type="checkbox" name=build[build_type] value="survivor" onclick="Clear();">
+              <span class="slider round"></span>
+            </label>
         </div>
-            <div class="type-buttons">
+        <div class="type-buttons">
           <h3>Killer</h3>
-          <img  alt="Killer Icon" src="images/icon_killer.png" width="100" height="100" />
+          <img alt="Killer Icon" src="images/icon_killer.png" width="100" height="100"/>
           <label class="switch">
             <input type="checkbox" name=build[build_type] value="killer" onclick="Clear();">
             <span class="slider round"></span>
           </label>
         </div>
-      </div><br>
+      </div>
+      <br>
 
-        </div>
-        <div class="instructions" id="instructions" style="display: none">
-          <h2>Select a character for your build. This is <i>required</i> to continue.</h2>
-        </div>
-        <br>
-        <div id="selected-character">
-        <%@characters.each do |c| %>
-        <div class="<%=c.id %>" style="display: none">
+    </div>
+    <div class="instructions" id="instructions" style="display: none">
+      <h2>Select a character for your build. This is <i>required</i> to continue.</h2>
+    </div>
+    <br>
+    <div id="selected-character">
+      <% @characters.each do |c| %>
+        <div class="<%= c.id %>" style="display: none">
           <div class="s-character-header" style="z-index: 1;">
-            <img class="character-portrait" src="images/characters/<%=c.name%>.png" style="width: 100px; height: 100px;">
-            <h3><%=c.name %></h3>
+            <img class="character-portrait" src="images/characters/<%= c.name %>.png" style="width: 100px; height: 100px;">
+            <h3><%= c.name %></h3>
           </div>
           <div class="s-character-body">
-          <%=c.overview %>
+            <%= c.overview %>
           </div>
           <div class="buttons">
             <button id="submit" type="submit">Continue</button>
             <input id="clear" value="Clear" onclick="Clear();">
           </div>
         </div>
-          <%end %>
-        </div>
-      </div>
-            <div class="survivor" style="display: none">
-              <%@characters.each do |c| %>
-              <%if c.character_type == "survivor" %>
-            <div id="survivor">
-              <div class="character-image" id="tooltip">
-                <label>
-                  <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
-                  <img class="character-portrait" src="images/characters/<%=c.name%>.png">
-                </label>
-                <p><%=c.name %></p>
-              </div>
-            </div>
-              <% end %>
-              <% end %>
-              </div>
-            <div class="killer" style="display: none">
-              <%@characters.each do |c| %>
-                <%if c.character_type == "killer" %>
-                  <div id="killer">
-                  <div class="character-image" id="tooltip">
-                    <label>
-                      <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%=c.id%>">
-                      <img class="character-portrait" src="images/characters/<%=c.name%>.png">
-                    </label>
-                    <p><%=c.name %></p>
-                  </div>
-
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-        </div>
+      <% end %>
     </div>
   </div>
+  <div class="survivor" style="display: none">
+    <% @characters.each do |c| %>
+      <% if c.character_type == "survivor" %>
+        <div id="survivor">
+          <div class="character-image" id="tooltip">
+            <label>
+              <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+              <img class="character-portrait" src="images/characters/<%= c.name %>.png">
+            </label>
+            <p><%= c.name %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="killer" style="display: none">
+    <% @characters.each do |c| %>
+      <% if c.character_type == "killer" %>
+        <div id="killer">
+          <div class="character-image" id="tooltip">
+            <label>
+              <input id="character_<%= c.id %>" type="radio" name="build[character_id]" value="<%= c.id %>">
+              <img class="character-portrait" src="images/characters/<%= c.name %>.png">
+            </label>
+            <p><%= c.name %></p>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
 </form>
 

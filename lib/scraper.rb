@@ -14,23 +14,23 @@ class Scraper
     survivor_list.each do |survivor|
       name = survivor.css('div.link a').text
       bio_link = survivor.css('div.link a').attribute('href').value
-      image_url  = survivor.css('div.image a img').attribute('src').value
+      image_url = survivor.css('div.image a img').attribute('src').value
       File.open("public/images/characters/#{name}.png", "wb") do |f|
-          f.write(open(image_url).read)
+        f.write(open(image_url).read)
       end
-        bio_page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com#{bio_link}"))
-        bio = bio_page.css('div.mw-parser-output i').each do |line|
-          text = line.text.strip
-          if text.length > 300
-            survivor_info = {:name => name, :bio => text}
-            survivors << survivor_info
-          end
+      bio_page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com#{bio_link}"))
+      bio = bio_page.css('div.mw-parser-output i').each do |line|
+        text = line.text.strip
+        if text.length > 300
+          survivor_info = {:name => name, :bio => text}
+          survivors << survivor_info
         end
       end
-      survivor_hash = survivors.group_by {|h1| h1[:name]}.map do |k, v|
-        {:name => k, :bio => v.map {|h2| h2[:bio] }.join}
-      end
-    survivor_hash.each {|t| t[:character_type]="survivor"}
+    end
+    survivor_hash = survivors.group_by { |h1| h1[:name] }.map do |k, v|
+      {:name => k, :bio => v.map { |h2| h2[:bio] }.join}
+    end
+    survivor_hash.each { |t| t[:character_type] = "survivor" }
     survivor_hash
   end
 
@@ -42,10 +42,10 @@ class Scraper
     killer_list.each do |killer|
       name = killer.css('div.link a').text
       bio_link = killer.css('div.link a').attribute('href').value
-      image_url  = killer.css('div.image a img').attribute('src').value
+      image_url = killer.css('div.image a img').attribute('src').value
 
       File.open("public/images/characters/#{name}.png", "wb") do |f|
-          f.write(open(image_url).read)
+        f.write(open(image_url).read)
       end
       bio_page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com#{bio_link}"))
       bio = bio_page.css('div.mw-parser-output i').each do |line|
@@ -56,10 +56,10 @@ class Scraper
         end
       end
     end
-    killer_hash = killers.group_by {|h1| h1[:name]}.map do |k, v|
-      {:name => k, :bio => v.map {|h2| h2[:bio] }.join}
+    killer_hash = killers.group_by { |h1| h1[:name] }.map do |k, v|
+      {:name => k, :bio => v.map { |h2| h2[:bio] }.join}
     end
-    killer_hash.each {|t| t[:character_type]="killer"}
+    killer_hash.each { |t| t[:character_type] = "killer" }
     killer_hash
   end
 
@@ -70,27 +70,27 @@ class Scraper
     perk_extract = page.css('div.mw-parser-output')
     counter = 1
     perk_extract.each do |item|
-    perk_name_extract = item.css('table.wikitable.sortable tr th[2] a[1]')
-    perk_name = perk_name_extract.map {|name| name.attribute('title').text.gsub("\n", "")}
-    perk_description_extract = item.css('table.wikitable.sortable tbody tr td')
-    perk_description = perk_description_extract.map {|description| description.text.gsub("\n", "")}
-    perk_hash = Hash[perk_name.zip(perk_description.map {|i| i.include?(',') ? (i.split /, /) : i})]
-    perk_hash.each do |name, description|
-      description.each do |d|
-        fixed = d.gsub(/[\r\n]+/, ' ')
-        binding.pry
-      end
+      perk_name_extract = item.css('table.wikitable.sortable tr th[2] a[1]')
+      perk_name = perk_name_extract.map { |name| name.attribute('title').text.gsub("\n", "") }
+      perk_description_extract = item.css('table.wikitable.sortable tbody tr td')
+      perk_description = perk_description_extract.map { |description| description.text.gsub("\n", "") }
+      perk_hash = Hash[perk_name.zip(perk_description.map { |i| i.include?(',') ? (i.split /, /) : i })]
+      perk_hash.each do |name, description|
+        description.each do |d|
+          fixed = d.gsub(/[\r\n]+/, ' ')
+          binding.pry
+        end
         if counter <= 74
           perk_role = "survivor"
         elsif counter >= 75
           perk_role = "killer"
         end
-          perk_complete = {:name => name, :description => description, :count => counter, :role => perk_role}
-          all_perks << perk_complete
+        perk_complete = {:name => name, :description => description, :count => counter, :role => perk_role}
+        all_perks << perk_complete
         counter += 1
-       end
-     end
-     all_perks
+      end
+    end
+    all_perks
 
   end
 
@@ -116,7 +116,7 @@ class Scraper
     array
   end
 
-def self.scrape_perk_images
+  def self.scrape_perk_images
     page = Nokogiri::HTML(open("https://deadbydaylight.gamepedia.com/Perks"))
     page.css('table.wikitable.sortable tbody tr th a').each do |perk|
       image_url = nil
@@ -127,11 +127,11 @@ def self.scrape_perk_images
         edited_name = unedited_name.value.partition(' ').last
         url = image_url.value
         File.open("public/images/perks/#{edited_name}", "wb") do |f|
-        f.write(open(url).read)
+          f.write(open(url).read)
         end
       end
     end
-end
+  end
 
 end
 

@@ -1,4 +1,3 @@
-
 require_relative '../models/concerns/slug.rb'
 class Perk < ActiveRecord::Base
   has_many :build_perks

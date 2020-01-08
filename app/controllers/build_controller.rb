@@ -10,7 +10,7 @@ class BuildController < ApplicationController
       erb :'build/index'
     else
       redirect to '/login'
-      end
+    end
   end
 
   post '/build/new' do
@@ -56,8 +56,8 @@ class BuildController < ApplicationController
       @user = current_user
       @character = Character.find(@build.character_id)
       @build.perk_ids.each do |p|
-      perk = Perk.find(p)
-      @perks << perk
+        perk = Perk.find(p)
+        @perks << perk
       end
       erb :'build/show'
     else
@@ -70,7 +70,7 @@ class BuildController < ApplicationController
       @perks = Perk.all
       @image_list = Dir.glob("public/images/perks/*.{png}")
       @user = current_user
-      @builds = Build.select{|key| key.user_id == @user.id }
+      @builds = Build.select { |key| key.user_id == @user.id }
       erb :'build/user_builds'
     else
       redirect to '/login'

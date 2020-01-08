@@ -18,36 +18,39 @@
   </script>
   <title>DBD Character Builder</title>
 </head>
-  <body onload="initPage();">
-  <div class="header">
-    <a href="/" class="logo"><img src="/images/logo.jpg" style="width:110px; height:60px"></a>
-    <div class="header-right">
-      <a href="/">Home</a>
-      <a href="/build">Create Build</a>
-      <a href="/user_builds">My Builds</a>
-      <a href="/all_builds">All Builds</a>
-      <%if logged_in? %>
-        <<a href="/logout">Logout</a>
-      <%end %>
-    </div>
+<body onload="initPage();">
+<div class="header">
+  <a href="/" class="logo"><img src="/images/logo.jpg" style="width:110px; height:60px"></a>
+  <div class="header-right">
+    <a href="/">Home</a>
+    <a href="/build">Create Build</a>
+    <a href="/user_builds">My Builds</a>
+    <a href="/all_builds">All Builds</a>
+    <% if logged_in? %>
+      <<a href="/logout">Logout</a>
+    <% end %>
   </div>
+</div>
 
-  <div class="wrapper">
-    <% flash.keys.each do |type| %>
+<div class="wrapper">
+  <% flash.keys.each do |type| %>
 
-    <div data-alert="<%=flash%>" class="alert-box" role="alert">
+    <div data-alert="<%= flash %>" class="alert-box" role="alert">
       <%= flash[type] %>
       <a href="#" class="closebtn" onclick="this.parentElement.style.display='none';">&times;</a>
     </div>
-    <% end %>
+  <% end %>
 
-    <%= yield %>
+  <%= yield %>
 
-  </div>
-  </body>
-  <div class="footer">
-    <p>Content is available under <a class="external" target="blank" rel="nofollow" href="//creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a> unless otherwise noted.<br>Game content and materials are trademarks and copyrights of their respective publisher and its licensors.  All rights reserved.<br>
-        This site is not affiliated with the game publisher.</p>
-  </div>
+</div>
+</body>
+<div class="footer">
+  <p>Content is available under
+    <a class="external" target="blank" rel="nofollow" href="//creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA
+      3.0</a> unless otherwise noted.<br>Game content and materials are trademarks and copyrights of their respective
+    publisher and its licensors. All rights reserved.<br>
+    This site is not affiliated with the game publisher.</p>
+</div>
 
 </html>

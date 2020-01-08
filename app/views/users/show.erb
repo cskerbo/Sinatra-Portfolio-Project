@@ -1,13 +1,13 @@
 <div class="container">
-  <h1>Welcome, <%=@user.username %>!</h1>
-    <div class="create-account" id="account-features">
+  <h1>Welcome, <%= @user.username %>!</h1>
+  <div class="create-account" id="account-features">
 
-      <h2>Account Information</h2>
-      <ul>
-        <p>Email: <%=@user.email%></p>
-        <p>Builds Active: <%=@builds.count%></p>
-        <p>Bio:</p>
-      </ul>
-    </div>
+    <h2>Account Information</h2>
+    <ul>
+      <p>Email: <%= @user.email %></p>
+      <p>Builds Active: <%= @builds.count %></p>
+      <p>Bio:</p>
+    </ul>
+  </div>
 
 </div>

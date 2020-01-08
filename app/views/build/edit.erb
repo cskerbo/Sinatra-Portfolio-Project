@@ -40,88 +40,90 @@
 </script>
 
 <body onload="initPage();">
-    <div class="character-content">
-      <div class="cs-how">
-        <div class="build-information">
-          <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%=@build.id %>" method="POST">
-            <input type="hidden" name="_method"  id="hidden" value="patch">
-          <h1><u>Build Name</u>: <span style="color: red"><%=@build.name %></span></h1><br>
-          <h3>Keep your existing build name, or enter a new one:</h3><br>
-          <input type="text" name="build[name]" id="build-name" value="<%=@build.name%>" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
-          <h3><u>Build Type</u>: <span style="color: red"><%=@build.build_type.capitalize %></span></h3><br>
-          <h3><u>Created by</u>: <span style="color: red"><%=@user.username%></span></h3><br>
-          <h3><u>Character</u>:</h3><br>
-          <div class="edit-character">
-            <div id="current-character">
-              <p>Current</p>
-          <img alt="character-image" style="width: 130px; height: 130px;" src="/images/characters/<%=@character.name%>.png">
-          <p><%=@character.name%></p><br><br><br>
-            </div>
-            <div id="new-character">
-              <p>Replace with(optional):</p>
-              <select name="build[character_id]">
-                <option value="<%=@character.id %>" selected>No Change</option>
-              <%@characters.each do |c| %>
-                <%if c.character_type == @build.build_type %>
-                <option value="<%=c.id %>"><%=c.name %></option>
-                  <%end %>
-                <%end %>
-              </select>
-            </div>
+<div class="character-content">
+  <div class="cs-how">
+    <div class="build-information">
+      <form name="build" onsubmit="return validatePerks() && validateForm();" action="/build/<%= @build.id %>" method="POST">
+        <input type="hidden" name="_method" id="hidden" value="patch">
+        <h1><u>Build Name</u>: <span style="color: red"><%= @build.name %></span></h1><br>
+        <h3>Keep your existing build name, or enter a new one:</h3><br>
+        <input type="text" name="build[name]" id="build-name" value="<%= @build.name %>" placeholder="ex. Stealth, Healing, Looping, My Favorite Build"><br>
+        <h3><u>Build Type</u>: <span style="color: red"><%= @build.build_type.capitalize %></span></h3><br>
+        <h3><u>Created by</u>: <span style="color: red"><%= @user.username %></span></h3><br>
+        <h3><u>Character</u>:</h3><br>
+        <div class="edit-character">
+          <div id="current-character">
+            <p>Current</p>
+            <img alt="character-image" style="width: 130px; height: 130px;" src="/images/characters/<%= @character.name %>.png">
+            <p><%= @character.name %></p><br><br><br>
           </div>
-          <div class="buttons">
-        <button id="submit" type="submit">Save</button>
-        <button id="submit" formaction="/build/<%=@build.id %>/delete" formmethod="get">Delete</button>
-        <button id="submit" formaction="/user_builds" formmethod="get">Cancel</button>
+          <div id="new-character">
+            <p>Replace with(optional):</p>
+            <select name="build[character_id]">
+              <option value="<%= @character.id %>" selected>No Change</option>
+              <% @characters.each do |c| %>
+                <% if c.character_type == @build.build_type %>
+                  <option value="<%= c.id %>"><%= c.name %></option>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
         </div>
-      </div>
-      </div>
-            <div class="build">
-              <%counter = 1 %>
-            <% @build.perks.each do |p|%>
-                  <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
-                    <div class="perk-selection">
-                    <h3>Slot <%=counter %></h3>
-                    <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option value="">Empty - Select a Perk</option>
-                      <%@perks.each do |m| %>
-                        <% if m.role == @build.build_type%>
-                          <%if m.name == p.name %>
-                          <option value="<%=m.id %>" selected="selected"><%=m.name %></option>
-                          <%else%>
-                      <option value="<%=m.id %>"><%=m.name %></option>
-                            <%end %>
-                          <%end %>
-                        <%end %>
-                    </select>
-                    </div>
-                    <div id="perk<%=counter %>-description" class="perk-slot"></div>
-                  </div>
-                    <%counter += 1 %>
-              <%end%>
-              <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
-              <%if @build.perks.count < 4 %>
-              <% counter = @build.perks.count%>
-              <%while counter < 4 %>
-                  <%counter += 1 %>
-                <div id="perk<%counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
-                  <div class="perk-selection">
-                    <h4>Slot <%=counter %></h4>
-                    <select class="select-css" id="perk<%=counter %>-select-list" name="build[perk_ids][]">
-                      <option value="" selected="selected">Select a perk</option>
-                      <%@perks.each do |m| %>
-                        <% if m.role == @build.build_type%>
-                            <option value="<%=m.id %>"><%=m.name %></option>
-                          <%end %>
-                        <%end %>
-                    </select>
-                  </div>
-                  <div id="perk<%=counter %>-description" class="perk-slot"></div>
-                </div>
-              <%end%>
-              <%end%>
-                </div>
-                <br>
+        <div class="buttons">
+          <button id="submit" type="submit">Save</button>
+          <button id="submit" formaction="/build/<%= @build.id %>/delete" formmethod="get">Delete</button>
+          <button id="submit" formaction="/user_builds" formmethod="get">Cancel</button>
         </div>
+    </div>
+  </div>
+  <div class="build">
+    <% counter = 1 %>
+    <% @build.perks.each do |p| %>
+      <div id="perk
+        <% counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+        <div class="perk-selection">
+          <h3>Slot <%= counter %></h3>
+          <select class="select-css" id="perk<%= counter %>-select-list" name="build[perk_ids][]">
+            <option value="">Empty - Select a Perk</option>
+            <% @perks.each do |m| %>
+              <% if m.role == @build.build_type %>
+                <% if m.name == p.name %>
+                  <option value="<%= m.id %>" selected="selected"><%= m.name %></option>
+                <% else %>
+                  <option value="<%= m.id %>"><%= m.name %></option>
+                <% end %>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+        <div id="perk<%= counter %>-description" class="perk-slot"></div>
+      </div>
+      <% counter += 1 %>
+    <% end %>
+    <!-- creates empty perks slots in the event the build has less than 4 perks attached -->
+    <% if @build.perks.count < 4 %>
+      <% counter = @build.perks.count %>
+      <% while counter < 4 %>
+        <% counter += 1 %>
+        <div id="perk
+          <% counter %>-container" class="perk-container" onchange="handlePerkChange('<%=counter %>');">
+          <div class="perk-selection">
+            <h4>Slot <%= counter %></h4>
+            <select class="select-css" id="perk<%= counter %>-select-list" name="build[perk_ids][]">
+              <option value="" selected="selected">Select a perk</option>
+              <% @perks.each do |m| %>
+                <% if m.role == @build.build_type %>
+                  <option value="<%= m.id %>"><%= m.name %></option>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div id="perk<%= counter %>-description" class="perk-slot"></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+</div>
 </form>
 </body>
