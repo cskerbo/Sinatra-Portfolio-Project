@@ -29,6 +29,16 @@ This is a CRUD, MVC app using Sinatra. This application allows you to create and
 
   Clone this repo into your IDE and run 'bundle install'. After that, run 'shotgun' to start the server. Copy and paste the address Shotgun provides into your web browser to interact with the application.
 
+## Screenshots
+
+![Home Page](public/images/home.png)
+
+![Create Build](public/images/create.png)
+
+![Perk Selection](public/images/perkselection.png)
+
+![All Builds](public/images/allbuilds.png)
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/cskerbo/Sinatra-Portfolio-Project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
