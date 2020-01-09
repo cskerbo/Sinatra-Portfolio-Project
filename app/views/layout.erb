@@ -35,7 +35,7 @@
 <div class="wrapper">
   <% flash.keys.each do |type| %>
 
-    <div data-alert="<%= flash %>" class="alert-box" role="alert">
+    <div data-alert="" class="alert-box" role="alert">
       <%= flash[type] %>
       <a href="#" class="closebtn" onclick="this.parentElement.style.display='none';">&times;</a>
     </div>
