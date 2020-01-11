@@ -8,6 +8,7 @@ gem 'require_all'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
+gem 'pg'
 gem 'bcrypt'
 gem "tux"
 gem 'sinatra-flash'
