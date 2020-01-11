@@ -1,1 +1,1 @@
-web: bundle exec rackup config.ru start -p $PORT -e $RACK_ENV
+web: bundle exec rackup config.ru start -p $PORT
