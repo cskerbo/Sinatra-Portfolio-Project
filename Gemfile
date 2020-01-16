@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem "tux"
 gem 'sinatra-flash'
 gem 'nokogiri'
+gem 'pg'
 
 group :production do
   gem 'pg'
