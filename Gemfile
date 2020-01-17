@@ -1,27 +1,19 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'activerecord', '4.2.5', :require => 'active_record'
+gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
-gem 'pg'
 gem 'bcrypt'
 gem "tux"
 gem 'sinatra-flash'
 gem 'nokogiri'
 gem 'pg'
-
-group :production do
-  gem 'pg'
-end
-
-group :development do
- # gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
-end
+gem 'eventmachine'
 
 group :test do
   gem 'rspec'

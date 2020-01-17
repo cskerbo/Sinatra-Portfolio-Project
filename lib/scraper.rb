@@ -107,7 +107,7 @@ class Scraper
 
   def self.scrape_characters_new
     array = []
-    csv_text = File.read("./lib/survivor_overview.csv")
+    csv_text = File.read("./lib/survivor_overview.csv", encoding: 'iso-8859-1:utf-8')
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
       item = row.to_hash

@@ -1,4 +1,4 @@
-class CreateBuildPerks < ActiveRecord::Migration
+class CreateBuildPerks < ActiveRecord::Migration[4.2]
   def change
     create_table :build_perks do |b|
       b.string :perk_name
